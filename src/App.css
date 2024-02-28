@@ -1,0 +1,14 @@
+.bg-image{
+  background-image: url('./assets/Images/bg1.jpg') ;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.color-div{
+  background-color:rgb(33, 30, 30);
+  color: white;
+}
