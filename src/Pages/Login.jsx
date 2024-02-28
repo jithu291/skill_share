@@ -5,7 +5,7 @@ import loginImg from '../assets/Images/login.png'
 function Login() {
   return (
     <div className='bg-image'>
-        <div className='color-div row border rounded shadow p-5 ' style={{ width:'80%', height:'70%'}}>
+        <div className='color-div row rounded shadow p-5 ' style={{ width:'80%', height:'70%'}}>
     <div className='col-lg-6 ' >
         <h1 className='text-center' style={{marginTop:'-35px'}} >Welcome <span style={{color:'red'}}>Back</span> </h1>
         <img className='mt-4' style={{height:'90%', width:'100%'}} src={loginImg} alt="" />
@@ -22,6 +22,7 @@ function Login() {
         <Form.Label>Password</Form.Label>
         <Form.Control type="floatingPassword" placeholder="Password" />
       </Form.Group>
+      
      
       <Button variant="primary" type="submit">
         Submit
