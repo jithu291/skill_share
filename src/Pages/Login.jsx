@@ -2,6 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import loginImg from '../assets/Images/login.png'
+
 function Login() {
   return (
     <div className='bg-image'>
@@ -10,7 +11,8 @@ function Login() {
         <h1 className='text-center' style={{marginTop:'-35px'}} >Welcome <span style={{color:'red'}}>Back</span> </h1>
         <img className='mt-4' style={{height:'90%', width:'100%'}} src={loginImg} alt="" />
     </div>
-    <div className='col-lg-6 mt-5 '>
+    <div className='col-lg-6 mt-3 '>
+        <h2 className='text-center' >Login Form</h2>
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
@@ -26,6 +28,9 @@ function Login() {
       <Button variant="primary" type="submit">
         Submit
       </Button>
+      <div>
+        <p>Don't have an Account?  <a href="">Register</a>  </p>
+      </div>
     </Form>
     </div>
 
