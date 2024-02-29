@@ -1,3 +1,9 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
 .bg-image{
   background-image: url('./assets/Images/bg1.jpg') ;
   background-size: cover;
@@ -13,4 +19,20 @@
   color: white;
 }
 .navname{
-  font-family: "Anton", sans-serif;}
+  font-family: "Anton", sans-serif;
+font-size: xx-large;
+color: darkgoldenrod;
+}
+.h1{
+  font-family: "Bebas Neue", sans-serif;
+    font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 70px;
+  color:black;
+}
+.para1{
+  font-size: larger;
+}
+
+
