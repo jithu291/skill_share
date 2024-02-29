@@ -1,5 +1,5 @@
 .bg-image{
-  background-image: url('./assets/Images/bg1.jpg') ;
+  background-image: url('./assets/Images/gradient.jpg') ;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -9,8 +9,10 @@
   
 }
 .color-div{
-  background-color:rgb(33, 30, 30);
-  color: white;
+  background-color:rgba(255, 255, 255,.0.5);
+  color: rgb(105, 105, 105);
 }
 .navname{
   font-family: "Anton", sans-serif;}
+
+  
