@@ -8,7 +8,7 @@ import { FloatingLabel } from 'react-bootstrap';
 function Login() {
   return (
     <div className='bg-image '>
-      <div class='round-div d-flex align-items-center justify-content-center'>
+      <div class='round-div d-flex align-items-center justify-content-center me-4'>
       <i class="fa-solid fa-user  " style={{fontSize:'50px',color:'white'}}></i>
       </div>
 
@@ -18,7 +18,7 @@ function Login() {
           
           <Form className='mt-4'>
             <div class="form-floating mb-3 d-flex" >
-              <div className='user border rounded  shadow' style={{height:'58px', width:'40px',color:'white' }}><i class="fa-solid fa-user " style={{marginTop:'22px',marginLeft:'10px'}}></i></div>
+              <div className='user border rounded  shadow' style={{height:'58px', width:'40px',color:'white' }}><i class="fa-solid fa-envelope " style={{marginTop:'22px',marginLeft:'10px'}}></i></div>
               <input style={{backgroundColor:"darkgray"}} type="email" className="form-control border rounded shadow " id=" floatingInput" placeholder="name@example.com" />
               <label for="floatingInput"className='ms-5 '  >Email address</label>
             </div>
@@ -34,7 +34,9 @@ function Login() {
         </div>
 
       </div>
-
+      <div className='log-div  shadow rounded ' style={{backgroundColor:'darkgray'}}>
+        <Link to={''} className='btn d-flex justify-content-evenly'>Login</Link>
+      </div>
 
     </div>
   )

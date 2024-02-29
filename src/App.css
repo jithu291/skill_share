@@ -1,3 +1,9 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
 .bg-image{
   background-image: url('./assets/Images/gradient.jpg') ;
   background-size: cover;
@@ -13,6 +19,53 @@
   color: rgb(105, 105, 105);
 }
 .navname{
-  font-family: "Anton", sans-serif;}
-
-  
+  font-family: "Anton", sans-serif;
+font-size: xx-large;
+color: darkgoldenrod;
+}
+.h1{
+  font-family: "Bebas Neue", sans-serif;
+    font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 70px;
+  color:black;
+}
+.para1{
+  font-size: larger;
+}
+.user{
+  background-color: rgb(65, 63, 63);
+}
+.round-div{
+  background-color: rgb(110, 110, 110);
+  border-radius:100px ;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 70px;
+}
+.log-div{
+  background-color:rgba(255, 255, 255,.0.5);
+  position: absolute;
+  top: 459px;
+  width:30% ;
+  height: 7%;
+  background: linear-gradient(to right,#e3bbfa, #f7bedc);
+} 
+.round-div2{
+  background-color: rgb(110, 110, 110);
+  border-radius:100px ;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 40px;
+}
+.reg-div{
+  background-color:rgba(255, 255, 255,.0.5);
+  position: absolute;
+  top: 489px;
+  width:30% ;
+  height: 7%;
+  background: linear-gradient(to right,#e3bbfa, #f7bedc);
+} 
