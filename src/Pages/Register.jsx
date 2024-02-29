@@ -32,7 +32,7 @@ function Register() {
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="floatingPassword" placeholder="Password" />
                             </Form.Group>
-                            <div> <h6>Already have an account? <a href="">Login</a> </h6></div>
+                            <div> <h6>Already have an account? <Link to={'/login'}>Login</Link> </h6></div>
 
                             <Button variant="primary" type="submit">
                                 Submit

@@ -2,6 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import loginImg from '../assets/Images/login.png'
+import { Link } from 'react-router-dom';
 
 function Login() {
   return (
@@ -30,7 +31,7 @@ function Login() {
         Submit
       </Button>
       <div>
-        <p>Don't have an Account?  <a href="">Register</a>  </p>
+        <p>Don't have an Account?  <Link to={'/register'}>Register</Link>  </p>
       </div>
     </Form>
     </div>
