@@ -9,7 +9,7 @@ function Header() {
   return (
     <>
     <div >
-    <Navbar style={{width:'99%'}} expand="lg" className="bg-body-tertiary">
+    <Navbar style={{width:'100%'}} expand="lg" className="bg-body-tertiary">
   <Container>
     <Navbar.Brand style={{marginLeft:'-50px'}}  className='navname' href="#home"> <i class="fa-solid fa-graduation-cap"></i> Skill-Share</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
