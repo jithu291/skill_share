@@ -9,7 +9,7 @@ import { motion } from 'framer-motion'
 function HomePage() {
     return (
         <>
-            <Header />
+            <Header showUserButton={false} />
             <div className='row' style={{ width: '100vw' }}>
                 <div className="col-lg-7 d-flex justify-content-center text-center ">
                     <h1 className='h1' style={{ marginLeft: '-100px', marginTop: '100px' }}>The <span>#1</span> skill <br></br> learning platform</h1>
@@ -24,10 +24,10 @@ function HomePage() {
                         initial={{ scale: 0 }} // Initial scale of 0
                         animate={{ scale: 1 }} // Animate to a scale of 1
                         transition={{ duration: 1 }} // Transition duration
-                        whileHover={{ scale:1.1}}
+                        whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 2 }}
                     >
-                        <img style={{width:'490px', marginTop:'-180px', marginLeft:'-100px' , borderRadius:'10%'}} className=' ' src={girl} alt="Animated Image" />
+                        <img style={{ width: '490px', marginTop: '-180px', marginLeft: '-100px', borderRadius: '10%' }} className=' ' src={girl} alt="Animated Image" />
                     </motion.div>
                 </div>
             </div>
