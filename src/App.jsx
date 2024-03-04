@@ -7,7 +7,7 @@ import Header from './Pages/Header'
 import HomePage from './Pages/HomePage'
 import './Landing.css'
 import Landing from './Pages/Landing'
-import './Profile.css'
+
 import Profile from './Pages/Profile'
 import Cart from './Pages/Cart'
 
@@ -21,7 +21,7 @@ function App() {
     <Routes>
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
-      <Route path='/header' element={<Header />} />
+      <Route path='/header' element={<Header  />} />
       <Route path='/' element={<HomePage />} />
       <Route path='/landing' element={<Landing />} />
       <Route path='/profile' element={<Profile />} />

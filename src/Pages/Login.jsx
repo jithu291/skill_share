@@ -35,7 +35,7 @@ function Login() {
 
       </div>
       <div className='log-div  shadow rounded ' style={{backgroundColor:'darkgray'}}>
-        <Link to={''} className='btn d-flex justify-content-evenly'>Login</Link>
+        <Link to={'/landing'} className='btn d-flex justify-content-evenly'>Login</Link>
       </div>
 
     </div>
