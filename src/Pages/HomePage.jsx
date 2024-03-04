@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap'
 import girl from '../assets/Images/landing6.png'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import Footer from './Footer'
 
 
 function HomePage() {
@@ -31,7 +32,7 @@ function HomePage() {
                     </motion.div>
                 </div>
             </div>
-
+{/* <Footer/> */}
         </>
     )
 }

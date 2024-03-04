@@ -9,6 +9,7 @@ import './Landing.css'
 import Landing from './Pages/Landing'
 import './Profile.css'
 import Profile from './Pages/Profile'
+import Cart from './Pages/Cart'
 
 
 
@@ -24,6 +25,8 @@ function App() {
       <Route path='/' element={<HomePage />} />
       <Route path='/landing' element={<Landing />} />
       <Route path='/profile' element={<Profile />} />
+      <Route path='/cart' element={<Cart />} />
+
     </Routes>
 
   )

@@ -3,6 +3,7 @@ import { Navbar } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
+import Cart from './Cart';
 
 function Header({ showUserButton }) {
   return (
@@ -18,7 +19,12 @@ function Header({ showUserButton }) {
 
                 {
                   showUserButton ? (
-                    <Link to={'/profile'} className='profilebtn btn  shadow bg-primary' style={{ padding: '6px', width: '50px', height:'50px', marginLeft: '950px', color: 'white' }} variant="contained"><i class="fa-solid fa-user mt-2"></i></Link>
+                    <div className='d-flex'>
+                      <Link to={'/profile'} className='profilebtn btn  shadow bg-primary' style={{ padding: '6px', width: '50px', height: '50px', marginLeft: '950px', color: 'white' }} variant="contained"><i class="fa-solid fa-user mt-2"></i></Link>
+                      <div style={{ marginLeft: '-150px ' }}>
+                        <Link to={'/cart'} className='cartbtn btn  shadow bg-primary' style={{ padding: '6px', width: '50px', height: '50px', color: 'white' }} variant="contained"><i style={{marginTop:'11px'}} class=" fa-solid fa-cart-shopping"></i></Link>
+                      </div>
+                    </div>
                   ) : (
                     <Link to={'/login'} className='btn rounded shadow bg-primary' style={{ padding: '6px', width: '100px', marginLeft: '900px', color: 'white' }} variant="contained">Login</Link>
                   )
