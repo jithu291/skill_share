@@ -10,7 +10,7 @@ function HomePage() {
     return (
         <>
             <Header showUserButton={false} />
-            <div className='row' style={{ width: '100vw' }}>
+            <div className=' row' style={{ width: '100vw' }}>
                 <div className="col-lg-7 d-flex justify-content-center text-center ">
                     <h1 className='h1' style={{ marginLeft: '-100px', marginTop: '100px' }}>The <span>#1</span> skill <br></br> learning platform</h1>
 

@@ -6,5 +6,16 @@
      font-weight: bolder;
 }
 .menu{
-    background: linear-gradient(to right, #e3bbfa, #f7bedc);
+    background: linear-gradient(to right,  #ffffff);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+#row{
+    background: linear-gradient(to right, #ffd2c3,#ffffff);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    height: 100vh;
+}
+#inptdiv{
+  
 }
