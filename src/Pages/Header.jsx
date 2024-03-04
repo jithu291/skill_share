@@ -2,7 +2,6 @@ import React from 'react'
 import { Navbar } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
 function Header({ showUserButton }) {

@@ -17,7 +17,7 @@ function HomePage() {
                 </div>
                 <div className="col-lg-7 ms-5">
                     <p className='para1'>The Skill Share Platform is an online learning platform designed<br /> to connect users with skilled individuals who can teach various<br />skills through video modules. </p>
-                    <Link to={'/register'} className='btn rounded shadow bg-primary text-light mt-5 d-flex justify-content-center gap-2' style={{ marginLeft: ' 150px', width: '200px ' }} variant="primary">Get Started <i class="fa-solid fa-right-long mt-1 " ></i></Link>
+                    <Link to={'/register'} className='btn rounded shadow bg-primary text-light mt-5 d-flex justify-content-center gap-2' style={{ marginLeft: ' 150px', width: '200px ' }} variant="primary">Get Started</Link>
                 </div>
                 <div className="col-lg-4">
                     <motion.div
