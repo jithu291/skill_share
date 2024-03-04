@@ -40,7 +40,7 @@ function Register() {
 
         </div>
         <div className='reg-div  shadow rounded ' style={{ backgroundColor: 'darkgray' }}>
-          <Link to={''} className='btn d-flex justify-content-evenly'>Register</Link>
+          <Link to={'/login'} className='btn d-flex justify-content-evenly'>Register</Link>
         </div>
 
       </div>

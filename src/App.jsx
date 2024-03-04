@@ -7,7 +7,7 @@ import Header from './Pages/Header'
 import HomePage from './Pages/HomePage'
 import './Landing.css'
 import Landing from './Pages/Landing'
-import './Profile.css'
+
 import Profile from './Pages/Profile'
 
 
