@@ -38,36 +38,7 @@ function Landing() {
             </Card.Text>
           </Card.Body>
         </Card>
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" style={{ height: '200px' }} src="https://www.insight-art.co.uk/images/home-panel/childrens-studio-800.jpg" />
-          <Card.Body>
-            <Card.Title className='d-flex justify-content-center'>Art and Craft</Card.Title>
-            <Card.Text className='d-flex justify-content-center'>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" style={{ height: '200px' }} src="https://img.freepik.com/free-photo/successful-business-people-with-speech-bubbles_53876-30780.jpg?size=626&ext=jpg&ga=GA1.1.1395880969.1709337600&semt=sph" />
-          <Card.Body>
-            <Card.Title className='d-flex justify-content-center'>Language Learning</Card.Title>
-            <Card.Text className='d-flex justify-content-center'>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" style={{ height: '200px' }} src="https://www.edgehill.ac.uk/wp-content/uploads/2023/06/animation3-11-1024x576.jpg" />
-          <Card.Body>
-            <Card.Title className='d-flex justify-content-center'>Graphic Design</Card.Title>
-            <Card.Text className='d-flex justify-content-center'>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-          </Card.Body>
-        </Card>
+        
         <Modal size='lg' show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>More Details</Modal.Title>
