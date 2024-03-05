@@ -32,17 +32,17 @@ function AddVideo() {
             </div>
             <div className='col-lg-6'>
               <div className='mb-3'>
-                <input type="text" className='form-control' placeholder='Video Title'/*  value={projectData.title} onChange={e => setProjectData({ ...projectData, title: e.target.value })} */ />
+                <input type="text" className='form-control' placeholder='Video Title'/>
               </div>
               <div className='mb-3'>
-                <input type="text" className='form-control' placeholder='Description'/*  value={projectData.languages} onChange={e => setProjectData({ ...projectData, languages: e.target.value })} */ />
+                <input type="text" className='form-control' placeholder='Description' />
               </div>
              
               <div className='mb-3'>
-                <input type="text" className='form-control' placeholder='Video Link'/*  value={projectData.website} onChange={e => setProjectData({ ...projectData, website: e.target.value })} */ />
+                <input type="text" className='form-control' placeholder='Video Link' />
               </div>
               <div className='mb-3'>
-                <input type="text" className='form-control' placeholder='Price'/*  value={projectData.overview} onChange={e => setProjectData({ ...projectData, overview: e.target.value })} */ />
+                <input type="text" className='form-control' placeholder='Price' />
               </div>
               <div className='d-flex justify-content-center'>
                 <Button>Add</Button>

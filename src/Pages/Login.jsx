@@ -24,6 +24,7 @@ const navigate = useNavigate()
       localStorage.setItem('token',token)
       console.log('Login successful:', response.data);
       navigate( '/landing')
+      
 
       
       // Optionally, you can save the access token to local storage or session storage for future authenticated requests
