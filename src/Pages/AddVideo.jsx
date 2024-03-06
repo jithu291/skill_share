@@ -1,49 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Button,  Modal } from 'react-bootstrap'
 import add from '../assets/Images/add.png'
-import axios from 'axios';
 
 function AddVideo() {
 
 
     const [show, setShow] = useState(false);
-    const [videoData,setVideoData] = useState({
-      title:'',
-      media:'',
-      description:'',
-      price:''
-    });
-
-    const [token,setToken]= useState('')
-
-    useEffect(()=>{
-      const storedToken = sessionStorage.getItem('token')
-      if (storedToken){
-        setToken(storedToken)
-      }
-    },[])
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const handleInputChange = (e)=>{
-      const {name , value} = e.target
-      setVideoData({...videoData , [name]:value});
-    };
-
-    const handleAdd = async()=>{
-      try{
-           const response = await axios.post('localhost:8000/api/product/' , videoData , {
-            headers:{
-              Authorization: `Token ${token}`
-            }
-           })
-           console.log('Product added:', response.data);
-           handleClose()
-      }catch(error){
-         console.error('Error adding product:',error);
+    const handleImageChange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setSelectedImage(reader.result);
+        };
+        reader.readAsDataURL(file);
       }
-    }
+    };
 
 
     return (
@@ -58,56 +35,30 @@ function AddVideo() {
                 <div className="row">
             <div className="col-lg-6">
               <label>
-                <input type="file" style={{ display: 'none' }} />
+                <input type="file" style={{ display: 'none' }} onChange={handleImageChange} />
                 <img style={{ height: '250px' }} className='w-100' src={add} alt="upload project image" />
               </label>
-                <div className="text-danger mt-2">
+             {/*  {fileStatus && */} <div className="text-danger mt-2">
                 *Please upload following file extensions (png, jpg, jpeg) only*
-              </div>
+              </div>{/* } */}
             </div>
             <div className='col-lg-6'>
               <div className='mb-3'>
-                <input 
-                type="text" 
-                className='form-control' 
-                placeholder='Title'
-                 name='title'
-                 value={videoData.title}
-                 onChange={handleInputChange} />
+                <input type="text" className='form-control' placeholder='Title' />
               </div>
-
               <div className='mb-3'>
-                <input
-                 type="text"
-                  className='form-control'
-                   placeholder='Description'
-                   name='description'
-                   value={videoData.description}
-                   onChange={handleInputChange} />
+                <input type="text" className='form-control' placeholder='Description' />
               </div>
              
               <div className='mb-3'>
-                <input
-                 type="text"
-                  className='form-control'
-                   placeholder='Media'
-                   name='media'
-                   value={videoData.media} 
-                   onChange={handleInputChange}/>
+                <input type="text" className='form-control' placeholder='Media' />
               </div>
-
               <div className='mb-3'>
-                <input
-                 type="text"
-                  className='form-control' 
-                  placeholder='Price'
-                  name='price'
-                  value={videoData.price}
-                  onChange={handleInputChange} />
+                <input type="text" className='form-control' placeholder='Price' />
               </div>
               <div className='d-flex justify-content-center'>
-                <Button onClick={handleAdd}>Add</Button>
-                <Button className='ms-3' onClick={handleClose}>Cancel</Button>
+                <Button onClick={handleClose}>Add</Button>
+                <Button className='ms-3'>Cancel</Button>
               </div>
             </div>
           </div>
