@@ -5,6 +5,32 @@ import axios from 'axios';
 
 function AddVideo() {
 
+  const [imageNumber, setImageNumber] = useState(null);
+
+  const handleImageClick = (num) => {
+    setImageNumber(num);
+    document.getElementById('fileInput').click();
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        localStorage.setItem(`image${imageNumber}`, reader.result);
+        document.getElementById(`imagePreview${imageNumber}`).setAttribute('src', reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  useEffect(() => {
+    for (let i = 1; i <= 2; i++) {
+      const imageData = localStorage.getItem(`image${i}`);
+      if (imageData) {
+        document.getElementById(`imagePreview${i}`).setAttribute('src', imageData);
+      }
+    }
+  }, []);
 
     const [show, setShow] = useState(false);
     const [videoData,setVideoData] = useState({
@@ -58,12 +84,10 @@ function AddVideo() {
                 <div className="row">
             <div className="col-lg-6">
               <label>
-                <input type="file" style={{ display: 'none' }} />
-                <img style={{ height: '250px' }} className='w-100' src={add} alt="upload project image" />
+                <input type="file" style={{ display: 'none' }} id='fileInput' onChange={handleFileChange}/>
+                <img style={{ height: '250px' }} className='image-preview w-100' src={add} alt="Image 1" id="imagePreview1" onClick={()=>handleImageClick(1)} />
               </label>
-                <div className="text-danger mt-2">
-                *Please upload following file extensions (png, jpg, jpeg) only*
-              </div>
+               
             </div>
             <div className='col-lg-6'>
               <div className='mb-3'>

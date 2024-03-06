@@ -24,7 +24,7 @@ const navigate = useNavigate()
       const {token } = response.data
       sessionStorage.setItem('token',token)
       console.log('Login successful:', response.data);
-      toast.success('Login Successfull')
+      toast.success(`Welcome Back "${username}"`)
       setTimeout(()=>{
         
         navigate( '/landing')
