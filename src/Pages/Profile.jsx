@@ -49,7 +49,7 @@ function Profile() {
      {data.map((item,index)=>(
  <div className=' row ' id='row' style={{width:'100vw'}}  key={index}>
  <div className=' menu col-lg-1 shadow ' style={{height:'592px'}}>
-  <h2 style={{marginLeft:'120px', width:'260px' }} className='mt-3' >welcome <span className='text-danger'>{item.user}</span></h2>
+  <h2 style={{marginLeft:'120px', width:'260px' }} className='mt-3' >welcome <span className='text-danger' style={{fontWeight:'bolder', fontSize:'40px'}}>{item.user} </span></h2>
   <div style={{marginTop:'200px', marginLeft:'20px'}} >
    <Link to={'/landing'} className='d-flex gap-1' style={{textDecoration:'none', color:'grey'}}><i class="fa-solid fa-house mt-1"></i><p>Home</p></Link>
   </div>
