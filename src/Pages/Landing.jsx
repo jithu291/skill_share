@@ -3,13 +3,14 @@ import Header from './Header'
 import Card from 'react-bootstrap/Card';
 import { Button, Col, Modal, Row } from 'react-bootstrap';
 import AddVideo from './AddVideo';
-import Cart from './Cart';
 
 
 
 function Landing() {
+  
 
   const [show, setShow] = useState(false);
+ 
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -28,35 +29,36 @@ function Landing() {
         <AddVideo />
       </div>
       <div className='mt-4 d-flex justify-content-evenly'>
-        <Card /* */ style={{ width: '18rem' }}>
-          <Card.Img onClick={handleShow} variant="top" style={{ height: '200px' }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5c9icJbbofNgg9hHqBZ1NnLGFkWQXv-2wMLioEY0cYT1aqzfovUJjCDNAguXTAKqqgs&usqp=CAU" />
+      
+        <Card  style={{ width: '18rem' }}>
+          <Card.Img onClick={handleShow}  variant="top" style={{ height: '200px' }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5c9icJbbofNgg9hHqBZ1NnLGFkWQXv-2wMLioEY0cYT1aqzfovUJjCDNAguXTAKqqgs&usqp=CAU" />
           <Card.Body>
-            <Card.Title className='d-flex justify-content-center'  onClick={handleShow}>Programming and Web Development</Card.Title>
+            <Card.Title className='d-flex justify-content-center'  onClick={handleShow}>title</Card.Title>
             <Card.Text className='d-flex justify-content-center'  onClick={handleShow}>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
+discription            </Card.Text>
           </Card.Body>
         </Card>
-        
+       
         <Modal size='lg' show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>More Details</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+          
             <Row>
               <Col>
                 <img className='img-fluid' style={{ height: '250px', width: '300px' }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5c9icJbbofNgg9hHqBZ1NnLGFkWQXv-2wMLioEY0cYT1aqzfovUJjCDNAguXTAKqqgs&usqp=CAU" alt="" />
               </Col>
               <Col>
-                <h2>Programming and Web Development</h2>
-                <p className='fw-bolder mt-4'>Description: <span style={{fontWeight:'lighter'}}  > Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut necessitatibus alias suscipit, consequuntur unde tempore dolorem. Voluptatem molestiae fugiat totam suscipit, delectus ipsam alias inventore eaque atque, soluta eveniet pariatur?</span></p>
-                <p className='fw-bolder'>Price: <span style={{fontWeight:'lighter'}}>100$</span></p>
+                <h2>Programming </h2>
+                <p className='fw-bolder mt-4'>Description: <span style={{fontWeight:'lighter'}}  >discription</span></p>
+                <p className='fw-bolder'>Price: <span style={{fontWeight:'lighter'}}>price$</span></p>
                 <div style={{marginLeft:'280px', marginTop:'-30px'}} className='d-flex justify-content-evenly'>
-         <Button><i class="fa-solid fa-cart-plus"></i></Button>
+         <Button  ><i class="fa-solid fa-cart-plus"></i></Button>
            </div>
               </Col>
             </Row>
+            
           </Modal.Body>
         </Modal>
       </div>
