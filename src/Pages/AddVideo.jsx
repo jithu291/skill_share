@@ -32,14 +32,14 @@ function AddVideo() {
             </div>
             <div className='col-lg-6'>
               <div className='mb-3'>
-                <input type="text" className='form-control' placeholder='Video Title'/>
+                <input type="text" className='form-control' placeholder='Title' />
               </div>
               <div className='mb-3'>
                 <input type="text" className='form-control' placeholder='Description' />
               </div>
              
               <div className='mb-3'>
-                <input type="text" className='form-control' placeholder='Video Link' />
+                <input type="text" className='form-control' placeholder='Media' />
               </div>
               <div className='mb-3'>
                 <input type="text" className='form-control' placeholder='Price' />
