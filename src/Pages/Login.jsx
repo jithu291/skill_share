@@ -5,6 +5,7 @@ import loginImg from '../assets/Images/login-illu.png'
 import { Link, useNavigate } from 'react-router-dom';
 import { FloatingLabel } from 'react-bootstrap';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function Login() {
@@ -21,15 +22,21 @@ const navigate = useNavigate()
         password: password
       });
       const {token } = response.data
-      localStorage.setItem('token',token)
+      sessionStorage.setItem('token',token)
       console.log('Login successful:', response.data);
-      navigate( '/landing')
-      
+      toast.success('Login Successfull')
+      setTimeout(()=>{
+        
+        navigate( '/landing')
+      },2000)
+     
+
 
       
       // Optionally, you can save the access token to local storage or session storage for future authenticated requests
     } catch (error) {
       console.error('Login failed:', error.response.data);
+      toast.error('Login Failed, Please check your credentials again!')
     }
   };
 
@@ -64,6 +71,7 @@ const navigate = useNavigate()
           </Form>
         </div>
       </div>
+      <ToastContainer theme='colored' autoClose='2000' />
     </div>
   )
 }

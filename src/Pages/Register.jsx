@@ -35,6 +35,7 @@ function Register() {
       });
       console.log(response.data);
       console.log('Registration successful:', response.data);
+      toast.success('Account created for ');
       // Store token in local storage 
       // sessionStorage.setItem('token', response.data.token);
       // console.log(token);
