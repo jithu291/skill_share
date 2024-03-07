@@ -8,26 +8,30 @@ function AddVideo() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [media , setMedia] = useState('')
+  const [media , setMedia] = useState(null)
+
+  
 
   const [show, setShow] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [apiImage , setApiImage] = useState(null);
+  const [apiFile , setApiFile] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleFileChange = (event) => {
     setSelectedFile(URL.createObjectURL(event.target.files[0]));
-    setApiImage(event.target.files[0])
+    setApiFile(event.target.files[0])
+    setMedia(event.target.files[0])
   };
   const token = sessionStorage.getItem('token')
 
   const handleAdd = async ( e) => {
     e.preventDefault();
     console.log(title, description, price,media);
-    if(!title||!description||!price||media){
+    if(!title||!description||!price||!media){
       toast.error('Please fill the form completely')
+      return;
     }
 
     try {
@@ -36,7 +40,7 @@ function AddVideo() {
       formData.append('title',title);
       formData.append('description',description);
       formData.append('price',price);
-      formData.append('media',apiImage);
+      formData.append('media',apiFile);
 
 
       const response = await axios.post('http://localhost:8000/api/product/',formData , {
@@ -67,7 +71,7 @@ function AddVideo() {
           <div className="row">
             <div className="col-lg-6">
               <label>
-                <input type="file" style={{ display: 'none' }} onChange={(e)=>{handleFileChange(e); setMedia(e.target.value);} }/>
+                <input type="file" style={{ display: 'none' }} onChange={handleFileChange }/>
                 <img style={{ height: '250px' }} className="w-100" src={selectedFile || add} alt="upload project image" />
               </label>
               {!selectedFile &&(
