@@ -1,13 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import Card from 'react-bootstrap/Card';
 import { Button, Col, Modal, Row } from 'react-bootstrap';
 import AddVideo from './AddVideo';
+import axios from 'axios';
 
 
 
 function Landing() {
+  const [detail, setDetail] = useState([])
+  const [tokenAccess, setTokenAccess] = useState('');
 
+useEffect(()=>{
+  const token = sessionStorage.getItem('token')
+  if(token){
+    setTokenAccess(token)
+    fetchDetail(token)
+  }
+}, [])
+
+const fetchDetail = async (token) =>{
+  try{
+    const response = await axios.get("http://127.0.0.1:8000/api/product/", {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": 'multipart/form-data'
+      }
+    })
+    setDetail(response.data);
+    console.log("api fetched", response.data);
+  }catch (error) {
+    console.log('error in fetching', error);
+  }
+}
 
   const [show, setShow] = useState(false);
 
@@ -28,17 +53,24 @@ function Landing() {
         </div>
         <AddVideo />
       </div>
-      <div className='mt-4 d-flex justify-content-evenly'>
-
-        <Card style={{ width: '18rem' }}>
-          <Card.Img onClick={handleShow} variant="top" style={{ height: '200px' }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5c9icJbbofNgg9hHqBZ1NnLGFkWQXv-2wMLioEY0cYT1aqzfovUJjCDNAguXTAKqqgs&usqp=CAU" />
+      <div >
+    
+       <div className='mt-4 gap-2 d-flex justify-content-evenly'>
+       {detail.map((item, index)=>(
+        
+       
+       <Card style={{ width: '18rem' }} key={index}>
+          <Card.Img onClick={handleShow} variant="top" style={{ height: '200px' }} src={`http://127.0.0.1:8000/product_media/${item.media}`} />
           <Card.Body>
-            <Card.Title className='d-flex justify-content-center' onClick={handleShow}>title</Card.Title>
+            <Card.Title className='d-flex justify-content-center' onClick={handleShow}>{item.title}</Card.Title>
             <Card.Text className='d-flex justify-content-center' onClick={handleShow}>
-              discription            </Card.Text>
+              {item.description}            </Card.Text>
           </Card.Body>
         </Card>
+         ))}
+       </div>
 
+        <div>
         <Modal size='lg' show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>More Details</Modal.Title>
@@ -61,6 +93,7 @@ function Landing() {
 
           </Modal.Body>
         </Modal>
+        </div>
       </div>
 
     </>

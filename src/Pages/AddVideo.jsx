@@ -14,12 +14,7 @@ function AddVideo() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [apiImage , setApiImage] = useState(null);
 
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    price: ''
-  });
-
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
