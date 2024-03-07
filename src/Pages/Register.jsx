@@ -19,7 +19,7 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username,email,password);
+    console.log(username, email, password);
     if (!username || !email || !password) {
       // Display toast if the form is not filled
       toast.error('Please fill the form');
@@ -43,10 +43,10 @@ function Register() {
         setLoading(false);
         navigate('/login');
       }, 2000);
-     
+
     } catch (error) {
       console.error('Registration failed:', error.response);
-    }  
+    }
   };
 
   return (
@@ -80,8 +80,8 @@ function Register() {
                 <p>Already have an account?  <Link to={'/login'}>Login</Link>  </p>
               </div>
               <div className='reg-div d-flex justify-content-center  shadow rounded ' style={{ backgroundColor: 'darkgray' }}>
-              {/* Register button with spinner */}
-              <Button variant='' type="submit" className='btn' disabled={loading}>
+                {/* Register button with spinner */}
+                <Button variant='' type="submit" className='btn' disabled={loading}>
                   {loading ? (
                     <Spinner animation="border" role="status">
                       <span className="visually-hidden">Loading...</span>
