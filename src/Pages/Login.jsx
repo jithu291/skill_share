@@ -9,11 +9,11 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 function Login() {
-  
+
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-const navigate = useNavigate()
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -21,18 +21,18 @@ const navigate = useNavigate()
         username: username,
         password: password
       });
-      const {token } = response.data
-      sessionStorage.setItem('token',token)
+      const { token } = response.data
+      sessionStorage.setItem('token', token)
       console.log('Login successful:', response.data);
       toast.success(`Welcome Back "${username}"`)
-      setTimeout(()=>{
-        
-        navigate( '/landing')
-      },2000)
-     
+      setTimeout(() => {
+
+        navigate('/landing')
+      }, 2000)
 
 
-      
+
+
       // Optionally, you can save the access token to local storage or session storage for future authenticated requests
     } catch (error) {
       console.error('Login failed:', error.response.data);
