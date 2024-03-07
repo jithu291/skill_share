@@ -60,7 +60,7 @@ const fetchDetail = async (token) =>{
         
        
        <Card style={{ width: '18rem' }} key={index}>
-          <Card.Img onClick={handleShow} variant="top" style={{ height: '200px' }} src={`http://127.0.0.1:8000/product_media/${item.media}`} />
+          <Card.Img onClick={handleShow} variant="top" style={{ height: '200px' }} src={item.media} />
           <Card.Body>
             <Card.Title className='d-flex justify-content-center' onClick={handleShow}>{item.title}</Card.Title>
             <Card.Text className='d-flex justify-content-center' onClick={handleShow}>
