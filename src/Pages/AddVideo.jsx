@@ -73,6 +73,7 @@ function AddVideo() {
       <label>
       {!selectedFile && (
           <div className="text-center">
+            <img src={add} alt="" />
             <h5>Upload here</h5>
           </div>
         )}

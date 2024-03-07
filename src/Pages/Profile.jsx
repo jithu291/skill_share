@@ -67,16 +67,16 @@ function Profile() {
 <input type="file" style={{display:'none'}}/>
 <img src={profile} alt="profile" style={{width:'200px', }} />
 </label>
- <div className='border rounded border-dark  w-50'>
+ <div className='border rounded border-dark  w-50' style={{height:'43px'}} >
  <p className='mt-1 text-center' >{item.user}</p>
  </div>
- <div className='border rounded border-dark  w-50 mt-4'>
+ <div className='border rounded border-dark  w-50 mt-4' style={{height:'43px'}}>
  <p className='mt-1 text-center'>Name</p>
  </div>
- <div className='border rounded border-dark  w-50 mt-4'>
+ <div className='border rounded border-dark  w-50 mt-4' style={{height:'43px'}}>
  <p className='mt-1 text-center'>Bio</p>
  </div>
- <div className='border rounded border-dark  w-50 mt-4'>
+ <div className='border rounded border-dark  w-50 mt-4'style={{height:'43px'}}>
  <p className='mt-1 text-center'>Skills</p>
  </div>
 <div className='btn '>
