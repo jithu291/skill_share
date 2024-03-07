@@ -29,6 +29,9 @@ const fetchDetail = async (token) =>{
     })
     setDetail(response.data);
     console.log("api fetched", response.data);
+
+
+    console.log(response.data);
   }catch (error) {
     console.log('error in fetching', error);
   }
@@ -59,8 +62,11 @@ const fetchDetail = async (token) =>{
        {detail.map((item, index)=>(
         
        
-       <Card style={{ width: '18rem' }} key={index}>
-          <Card.Img onClick={handleShow} variant="top" style={{ height: '200px' }} src={item.media} />
+       <Card onClick={handleShow} style={{ width: '18rem' }} key={index}>
+          {/* <Card.Img variant="top" style={{ height: '200px' }} src={item.media} /> */}
+
+          <Card.Img variant="top" src={item.media} style={{ height: '150px',width:'100%', objectFit: 'cover' }} />
+
           <Card.Body>
             <Card.Title className='d-flex justify-content-center' onClick={handleShow}>{item.title}</Card.Title>
             <Card.Text className='d-flex justify-content-center' onClick={handleShow}>
