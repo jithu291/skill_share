@@ -11,28 +11,28 @@ function Landing() {
   const [detail, setDetail] = useState([])
   const [tokenAccess, setTokenAccess] = useState('');
 
-useEffect(()=>{
-  const token = sessionStorage.getItem('token')
-  if(token){
-    setTokenAccess(token)
-    fetchDetail(token)
-  }
-}, [])
+  useEffect(() => {
+    const token = sessionStorage.getItem('token')
+    if (token) {
+      setTokenAccess(token)
+      fetchDetail(token)
+    }
+  }, [])
 
-const fetchDetail = async (token) =>{
-  try{
-    const response = await axios.get("http://127.0.0.1:8000/api/product/", {
-      headers: {
-        Authorization: `Token ${token}`,
-        "Content-Type": 'multipart/form-data'
-      }
-    })
-    setDetail(response.data);
-    console.log("api fetched", response.data);
-  }catch (error) {
-    console.log('error in fetching', error);
+  const fetchDetail = async (token) => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/product/", {
+        headers: {
+          Authorization: `Token ${token}`,
+          "Content-Type": 'multipart/form-data'
+        }
+      })
+      setDetail(response.data);
+      console.log("api fetched", response.data);
+    } catch (error) {
+      console.log('error in fetching', error);
+    }
   }
-}
 
   const [show, setShow] = useState(false);
 
@@ -53,46 +53,43 @@ const fetchDetail = async (token) =>{
         </div>
         <AddVideo />
       </div>
-      <div >
-    
-       <div className='mt-4 gap-2 d-flex justify-content-evenly'>
-       {detail.map((item, index)=>(
-        
-       
-       <Card style={{ width: '18rem' }} key={index}>
-          <Card.Img onClick={handleShow} variant="top" style={{ height: '200px' }} src={item.media} />
-          <Card.Body>
-            <Card.Title className='d-flex justify-content-center' onClick={handleShow}>{item.title}</Card.Title>
-            <Card.Text className='d-flex justify-content-center' onClick={handleShow}>
-              {item.description}            </Card.Text>
-          </Card.Body>
-        </Card>
-         ))}
-       </div>
+      <div className='container mt-5 mb-5'  >
+        <div className="row row-cols-1 row-cols-md-4 g-4  d-flex justify-content-between ">
+          {detail.map((item, index) => (
+            <Card style={{ width: '15rem' }} key={index}>
+              <Card.Img className='mt-2' onClick={handleShow} variant="top" style={{ height: '200px' }} src={item.media} />
+              <Card.Body>
+                <Card.Title className='d-flex justify-content-center' onClick={handleShow}>{item.title}</Card.Title>
+                <Card.Text className='d-flex justify-content-center' onClick={handleShow}>
+                  {item.description}            </Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
 
         <div>
-        <Modal size='lg' show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>More Details</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          <Modal size='lg' show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>More Details</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
 
-            <Row>
-              <Col>
-                <img className='img-fluid' style={{ height: '250px', width: '300px' }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5c9icJbbofNgg9hHqBZ1NnLGFkWQXv-2wMLioEY0cYT1aqzfovUJjCDNAguXTAKqqgs&usqp=CAU" alt="" />
-              </Col>
-              <Col>
-                <h2>Programming </h2>
-                <p className='fw-bolder mt-4'>Description: <span style={{ fontWeight: 'lighter' }}  >discription</span></p>
-                <p className='fw-bolder'>Price: <span style={{ fontWeight: 'lighter' }}>price$</span></p>
-                <div style={{ marginLeft: '280px', marginTop: '-30px' }} className='d-flex justify-content-evenly'>
-                  <Button  ><i class="fa-solid fa-cart-plus"></i></Button>
-                </div>
-              </Col>
-            </Row>
+              <Row>
+                <Col>
+                  <img className='img-fluid' style={{ height: '250px', width: '300px' }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5c9icJbbofNgg9hHqBZ1NnLGFkWQXv-2wMLioEY0cYT1aqzfovUJjCDNAguXTAKqqgs&usqp=CAU" alt="" />
+                </Col>
+                <Col>
+                  <h2>Programming </h2>
+                  <p className='fw-bolder mt-4'>Description: <span style={{ fontWeight: 'lighter' }}  >discription</span></p>
+                  <p className='fw-bolder'>Price: <span style={{ fontWeight: 'lighter' }}>price$</span></p>
+                  <div style={{ marginLeft: '280px', marginTop: '-30px' }} className='d-flex justify-content-evenly'>
+                    <Button  ><i class="fa-solid fa-cart-plus"></i></Button>
+                  </div>
+                </Col>
+              </Row>
 
-          </Modal.Body>
-        </Modal>
+            </Modal.Body>
+          </Modal>
         </div>
       </div>
 
