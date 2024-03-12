@@ -10,6 +10,7 @@ import axios from 'axios';
 function Landing() {
   const [detail, setDetail] = useState([])
   const [tokenAccess, setTokenAccess] = useState('');
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const token = sessionStorage.getItem('token')
@@ -34,7 +35,7 @@ function Landing() {
     }
   }
 
-  const [show, setShow] = useState(false);
+ 
 
 
   const handleClose = () => setShow(false);
@@ -57,7 +58,18 @@ function Landing() {
         <div className="row row-cols-1 row-cols-md-4 g-4  d-flex justify-content-between ">
           {detail.map((item, index) => (
             <Card style={{ width: '15rem' }} key={index}>
-              <Card.Img className='mt-2' onClick={handleShow} variant="top" style={{ height: '200px' }} src={item.media} />
+            {item.mediaType === '.png' || '.jpg' || '.jpeg' ? (
+               <Card.Img
+               className='mt-2'
+               variant="top"
+               style={{ height: '200px', width:'100%' }}
+               src={item.media} />
+            ):(   <video className='mt-2' style={{ height: '200px', width: '100%' }} controls>
+            <source src={item.media} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>)}
+               
+
               <Card.Body>
                 <Card.Title className='d-flex justify-content-center' onClick={handleShow}>{item.title}</Card.Title>
                 <Card.Text className='d-flex justify-content-center' onClick={handleShow}>

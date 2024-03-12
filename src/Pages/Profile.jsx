@@ -31,7 +31,7 @@ function Profile() {
       })
 
       setData(response.data)
-      console.log("api fetching sccessfull");
+      console.log("api fetching sccessfull" , response.data );
     } catch (err) {
 
       console.log('error in fetchin data', err);
@@ -141,36 +141,3 @@ export default Profile
 
 
 
-{/* <div className='inputDiv w-100' style={{marginLeft:'0.2rem'}}>
-         <FloatingLabel
-            controlId="floatingTextarea"
-            label="Username"
-            className="mb-3"
-          >
-            <Form.Control as="textarea" placeholder="Username" />
-          </FloatingLabel>
-
-          <FloatingLabel
-            controlId="floatingTextarea"
-            label="Name"
-            className="mb-3"
-          >
-            <Form.Control as="textarea" placeholder="Name" />
-          </FloatingLabel>
-
-          <FloatingLabel controlId="floatingTextarea2" label="Bio">
-            <Form.Control
-              as="textarea"
-              placeholder="Bio"
-              style={{ height: '80px' }}
-            />
-          </FloatingLabel>
-
-          <FloatingLabel
-            controlId="floatingTextarea"
-            label="Skills"
-            className="mt-3"
-          >
-            <Form.Control as="textarea" placeholder="Skills" />
-          </FloatingLabel>
-         </div> */}
