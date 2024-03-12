@@ -37,6 +37,9 @@ function Profile() {
       console.log('error in fetchin data', err);
     }
   }
+
+
+  //
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
