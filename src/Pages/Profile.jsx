@@ -66,10 +66,9 @@ function Profile() {
 
             <div className=' col-lg-8 rounded shadow d-flex flex-column align-items-center justify-content-center  mt-4 ' id='inptdiv' style={{ width: '40%', height: '90%', marginLeft: '300px' }}>
 
-              <label style={{ marginTop: '-60px' }} >
-                <input type="file" style={{ display: 'none' }} />
-                <img src={profile} alt="profile" style={{ width: '200px', }} />
-              </label>
+             
+                <img src={profile} alt="profile" style={{ width: '200px', marginTop:'-80px' }} />
+             
               <div className='border rounded border-dark  w-50'>
                 <p className='mt-1 text-center' >{item.user}</p>
               </div>
@@ -126,6 +125,14 @@ function Profile() {
             className="mt-3"
           >
             <Form.Control as="textarea" placeholder="Skills" />
+          </FloatingLabel>
+          
+          <FloatingLabel
+            controlId="floatingTextarea"
+            label="User"
+            className="mt-3"
+          >
+            <Form.Control as="textarea" placeholder="User" />
           </FloatingLabel>
         </Modal.Body>
         <Modal.Footer>
