@@ -51,19 +51,20 @@ export default function Cart() {
         console.log("Token not found. Please login.");
         return;
       }
-  
+
       await axios.delete(`http://localhost:8000/api/cart/item/${itemId}/`, {
         headers: {
           Authorization: `Token ${token}`
         },
       });
-  
+
       // After successful deletion, fetch updated cart items
       fetchCartItems();
     } catch (error) {
       console.error("Error deleting item from cart:", error);
     }
   };
+
 
   // const [cartItems, setCartItems] = useState([]);
 
@@ -72,7 +73,7 @@ export default function Cart() {
 
   //   setCartItems([...cartItems, item]); // Add item to cart
   // };
-  
+
 
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }} >
@@ -93,59 +94,59 @@ export default function Cart() {
                     <hr />
 
                     <div className="d-flex justify-content-between align-items-center mb-4">
-                      
+
 
                       <div>
                         <h1 className="mb-1">cart</h1>
-                        <p className="mb-0">You have 0 items in your cart</p>
+                        {/* <p className="mb-0">You have 0 items in your cart</p> */}
                       </div>
-                       
+
                     </div>
                     {Array.isArray(cartItems.cart_items) &&
-  cartItems.cart_items.map((item) => (
-                    <MDBCard className="mb-3" key={item.id}>
-                      <MDBCardBody>
-                       <div>
-                       
-                       <div className="d-flex justify-content-between">
-                         
-
-                          
-                          <div className="d-flex flex-row align-items-center">
+                      cartItems.cart_items.map((item) => (
+                        <MDBCard className="mb-3" key={item.id}>
+                          <MDBCardBody>
                             <div>
-                              <MDBCardImage
-                               src={`${Url}${item.product.media}`}
-                                fluid className="rounded-3" style={{ width: "65px" }}
-                                alt="Shopping item" />
+
+                              <div className="d-flex justify-content-between">
+
+
+
+                                <div className="d-flex flex-row align-items-center">
+                                  <div>
+                                    <MDBCardImage
+                                      src={`${Url}${item.product.media}`}
+                                      fluid className="rounded-3" style={{ width: "65px" }}
+                                      alt="Shopping item" />
+                                  </div>
+                                  <div className="ms-3">
+                                    <MDBTypography tag="h5">
+                                      {item.product.title}
+                                    </MDBTypography>
+                                    <p className="small mb-0">Description:{item.product.description}</p>
+                                  </div>
+                                </div>
+                                <div className="d-flex flex-row align-items-center">
+                                  <div style={{ width: "50px" }}>
+                                    <MDBTypography tag="h5" className="fw-normal mb-0">
+                                      {item.qty}
+                                    </MDBTypography>
+                                  </div>
+                                  <div style={{ width: "80px" }}>
+                                    <MDBTypography tag="h5" className="mb-0">
+                                      {item.total}
+                                    </MDBTypography>
+                                  </div>
+                                  <a href="#!" style={{ color: 'red' }} onClick={() => handleDeleteItem(item.id)} >
+                                    <MDBIcon fas icon="trash-alt" />
+                                  </a>
+                                </div>
+                              </div>
+
                             </div>
-                            <div className="ms-3">
-                              <MDBTypography tag="h5">
-                              {item.product.title}
-                              </MDBTypography>
-                              <p className="small mb-0">Description:{item.product.description}</p>
-                            </div>
-                          </div>
-                          <div className="d-flex flex-row align-items-center">
-                            <div style={{ width: "50px" }}>
-                              <MDBTypography tag="h5" className="fw-normal mb-0">
-                              {item.quantity}
-                              </MDBTypography>
-                            </div>
-                            <div style={{ width: "80px" }}>
-                              <MDBTypography tag="h5" className="mb-0">
-                              {item.total}
-                              </MDBTypography>
-                            </div>
-                            <a href="#!" style={{ color: 'red' }}  onClick={() => handleDeleteItem(item.id)} >
-                              <MDBIcon fas icon="trash-alt" />
-                            </a>
-                          </div>
-                        </div>
-                        
-                       </div>
-                      </MDBCardBody>
-                    </MDBCard>
-))}
+                          </MDBCardBody>
+                        </MDBCard>
+                      ))}
                   </MDBCol>
 
                   <MDBCol lg="5">

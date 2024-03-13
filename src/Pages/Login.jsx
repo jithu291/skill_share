@@ -21,8 +21,9 @@ function Login() {
         username: username,
         password: password
       });
-      const { token } = response.data
+      const { token,user_id } = response.data
       sessionStorage.setItem('token', token)
+      sessionStorage.setItem('id',user_id)
       console.log('Login successful:', response.data);
       toast.success(`Welcome Back "${username}"`)
       setTimeout(() => {
