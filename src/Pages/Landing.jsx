@@ -133,9 +133,7 @@ function Landing() {
         </div>
        <Link to="/exam" className='exam btn btn-success'>
        <i class="fa-solid fa-circle-info mt-1 me-1"  style={{ fontSize: '15px' }}></i>Exam
-       </Link>
-         <AddVideo />
-      
+       </Link>      
         <AddVideo />
       </div>
       <div className='container mt-5 mb-5'  >
