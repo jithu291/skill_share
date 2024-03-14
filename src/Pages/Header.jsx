@@ -11,7 +11,7 @@ function Header({ showUserButton }) {
       <div >
         <Navbar style={{ width: '100%' }} expand="lg" className="bg-body-tertiary">
           <Container>
-            <Navbar.Brand style={{ marginLeft: '-50px' }} className='navname' href="/"> <i class="fa-solid fa-graduation-cap"></i> Skill-Share</Navbar.Brand>
+            <Navbar.Brand style={{ marginLeft: '-50px' }} className='navname' href=""> <i class="fa-solid fa-graduation-cap"></i> Skill-Share</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Stack spacing={2} direction="row">
