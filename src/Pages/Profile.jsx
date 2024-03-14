@@ -6,9 +6,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { FaUserEdit } from "react-icons/fa";
+import { FaCloudUploadAlt, FaUserEdit } from "react-icons/fa";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Profile() {
   const [data, setData] = useState(null)
@@ -19,6 +20,7 @@ function Profile() {
     name: '',
     bio: '',
     skills: '',
+    profile_pic:null,
     user: id
   });
  
@@ -80,16 +82,35 @@ function Profile() {
     });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFormData({
+      ...formData,
+      profile_pic: file,
+    });
+  };
+
   const handleSaveChanges = async () => {
     if (!formData.name || !formData.bio || !formData.skills) {
       toast.error("Please fill all the fields");
       return; // Exit function early
     }
     try {
-      const response = await axios.put(`http://127.0.0.1:8000/api/userprofile/${id}/`, formData, {
+
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('bio', formData.bio);
+      formDataToSend.append('skills', formData.skills);
+      formDataToSend.append('user', id);
+      if (formData.profile_pic) {
+        formDataToSend.append('profile_pic', formData.profile_pic);
+      }
+
+      const response = await axios.put(`http://127.0.0.1:8000/api/userprofile/${id}/`, formDataToSend, {
         headers: {
-          Authorization: `Token ${accessToken}`
-        }
+          Authorization: `Token ${accessToken}`,
+          'Content-Type': 'multipart/form-data',
+        },
       });
       console.log("Profile updated successfully", response.data);
       setData(response.data)
@@ -129,11 +150,11 @@ function Profile() {
 
 
           <div className=' col-lg-8 rounded shadow d-flex flex-column align-items-center justify-content-center  mt-4 ' id='inptdiv' style={{ width: '40%', height: '90%', marginLeft: '300px' }}>
-
-            <label style={{ marginTop: '-60px' }} >
-              <input type="file" style={{ display: 'none' }} />
-              <img src={profile} alt="profile" style={{ width: '200px', }} />
-            </label>
+            {!data.profile_pic &&
+            
+            <h1>Upload profile</h1>
+            }
+              <img src={data.profile_pic && data.profile_pic} alt=""  style={{width:'200px',height:'200px', borderRadius:'100px', marginTop:'-4   0px'}}/>
 
             <div className='border rounded border-dark  w-50 mt-4'>
               <p className='mt-1 text-center'>{data?.name}</p>
@@ -145,7 +166,7 @@ function Profile() {
               <p className='mt-1 text-center'>{data?.skills}</p>
             </div>
             <div className='btn '>
-              <Button variant="primary" className='shadow d-flex gap-1 mt-3' style={{ marginLeft: '0rem', marginBottom: '-60px', height: '40px' }} onClick={() => handleShow()}>
+              <Button variant="primary" className='shadow d-flex gap-1 mt-2' style={{ marginLeft: '0rem', marginBottom: '-60px', height: '40px' }} onClick={() => handleShow()}>
                 <p>Edit </p> <FaUserEdit className='mt-1' />
               </Button>
             </div>
@@ -171,7 +192,7 @@ function Profile() {
           <Modal.Title style={{ marginLeft: '180px', fontSize: '30px', fontFamily: "Cormorant,seriff " }}>Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body >
-          <FloatingLabel controlId="name" label="Name">
+          <FloatingLabel controlId="name" label="Name" >
             <Form.Control
               type="text"
               name="name"
@@ -180,15 +201,15 @@ function Profile() {
             />
           </FloatingLabel>
 
-          <FloatingLabel controlId="bio" label="Bio">
+          <FloatingLabel controlId="bio" label="Bio" className='mt-2'>
             <Form.Control
-              as="textarea"
+            type="textarea"
               name="bio"
               value={formData.bio}
               onChange={handleInputChange}
             />
           </FloatingLabel>
-          <FloatingLabel controlId="skills" label="Skills">
+          <FloatingLabel controlId="skills" label="Skills"  className='mt-2'>
             <Form.Select
               name="skills"
               value={formData.skills}
@@ -201,6 +222,19 @@ function Profile() {
               <option value="crafting">Crafting</option>
             </Form.Select>
           </FloatingLabel>
+
+          
+          <label className='border rounded mt-2 d-flex' style={{width:'465px'}}>
+              <input type="file" style={{ display: 'none' }} onChange={handleFileChange}/>
+              {!formData.profile_pic&&( <div className='d-flex ms-3 gap-1 mt-3  '>
+                <p>Add Profile Picture</p>
+                <i class="fa-solid fa-cloud-arrow-up mt-1 "></i>
+              </div>   )}
+
+
+             {formData.profile_pic && <img src={formData.profile_pic &&URL.createObjectURL(formData.profile_pic)  } alt="" style={{ width: '50px'  }} />}
+              
+            </label>
 
         </Modal.Body>
         <Modal.Footer>
