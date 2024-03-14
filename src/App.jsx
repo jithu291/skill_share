@@ -10,6 +10,7 @@ import Landing from './Pages/Landing'
 
 import Profile from './Pages/Profile'
 import Cart from './Pages/Cart'
+import Exam from './Pages/Exam'
 
 
 
@@ -26,6 +27,8 @@ function App() {
       <Route path='/landing' element={<Landing />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/cart' element={<Cart />} />
+      <Route path='/exam' element={<Exam />} />
+
 
     </Routes>
 
