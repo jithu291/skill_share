@@ -106,6 +106,31 @@ function Landing() {
   setSearchTerm(value);
   };
 
+  const placeBid = async (id) => {
+    try {
+      const token = sessionStorage.getItem('token');
+      if (!token) {
+        console.log('Token not found. Please login.');
+        return;
+      }
+      const response = await axios.post(
+        `http://localhost:8000/api/product/bids/${id}/`,
+        { amount: '1000' },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+      console.log('Bid placed successfully:', response.data);
+      // You can update state or perform any other action upon successful bid placement
+    } catch (error) {
+      console.error('Error placing bid:', error);
+    }
+  };
+
+
   const filteredProducts = detail.filter(detail =>
     detail.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -172,6 +197,9 @@ function Landing() {
                   <p className='fw-bolder'>Price: <span style={{ fontWeight: 'lighter' }}>{selectedItem ? selectedItem.price : ""}</span></p>
                   <div style={{ marginLeft: '280px', marginTop: '-30px' }} className='d-flex justify-content-evenly'>
                     <Button onClick={() => { addToCart(selectedItem.id); handleClose(); }} ><i class="fa-solid fa-cart-plus"></i></Button>
+                  </div>
+                  <div style={{ marginLeft: '280px', marginTop:'40px'}}> 
+                    <Button onClick={() => { placeBid(selectedItem.id); }} className='btn btn-primary'>BID<i class="fa-solid fa-coins ms-2"></i></Button>
                   </div>
                 </Col>
               </Row>

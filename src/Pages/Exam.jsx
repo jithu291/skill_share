@@ -8,34 +8,97 @@ import axios from 'axios';
 function Exam() {
 
     const [data, setData] = useState(null);
-    const id = sessionStorage.getItem("id")
+    const userid = sessionStorage.getItem("id")
+    const [skillid,setskillID] = useState({
+        id:''
+    })
+    
+    const [ users,setUsers] = useState([])
+    const [currentUser,setCurrentUser] = useState([])
     const [accessToken, setAccessToken] = useState('');
+
 
     useEffect(()=>{
         const token = sessionStorage.getItem('token')
     if (token) {
       setAccessToken(token)
-    
     }
-        const fetchData = async ()=>{
-            try{
-                const response = await axios.get(`http://localhost:8000/examapi/questions/${id}/`,{
-                    headers : {
-                        Authorization: `Token ${token}`
-                    }
-                })
-                setData(response.data)
-            }catch (error){
-                console.log('error fetching data:', error);
+    }, []);
 
-            }
+ 
+    const fetchData = async ()=>{
+        try{
+            const response = await axios.get(`http://localhost:8000/api/userprofile/`,{
+                headers : {
+                    'Authorization':`Token ${accessToken}`
+                }
+            })
+            setUsers(response.data)
+          // console.log(users);
+        }catch (error){
+            console.log('error fetching data:', error);
+
         }
-        fetchData();
-    }, [id]);
-   
+    }
+    fetchData(); 
+    //find current user
+    useEffect(() => {
+        if (users.length > 0 && userid) {
+            const currentUser = users.find(user => user.id == userid);
+            setCurrentUser(currentUser);
+        }
+      if(currentUser.skills == "communication"){
+        setskillID({
+            id:'2'
+        })
+      }
+      else if(currentUser.skills == "coding"){
+        setskillID({
+            id:'1'
+        })
+      }
+      else if(currentUser.skills == "drawing"){
+        setskillID({
+            id:'3'
+        })
+      }
+      else if(currentUser.skills == "crafting"){
+        setskillID({
+            id:'4'
+        })
+      }
+      else{
+        setskillID({
+            id:'1'
+        })
+      }
 
 
-    
+
+    }, [users, userid]);
+ console.log(currentUser);
+console.log(skillid.id);
+
+
+useEffect(()=>{
+    const fetchData = async ()=>{
+        const {id} = skillid
+        console.log(id,accessToken);
+        try{
+            const response = await axios.get(`http://localhost:8000/examapi/topics/${id}/questions/`,{
+                headers : {
+                    'Authorization':`Token ${accessToken}`
+                }
+            })
+            setData(response.data)
+        }catch (error){
+            console.log('error fetching data:', error);
+        }
+    }
+    fetchData();
+}, [currentUser]);
+console.log(data);
+
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',
         clipPath: 'inset(50%)',

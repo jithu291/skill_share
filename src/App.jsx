@@ -7,10 +7,10 @@ import Header from './Pages/Header'
 import HomePage from './Pages/HomePage'
 import './Landing.css'
 import Landing from './Pages/Landing'
-
 import Profile from './Pages/Profile'
 import Cart from './Pages/Cart'
 import Exam from './Pages/Exam'
+import Bid1 from './Pages/Bid1'
 
 
 
@@ -28,8 +28,7 @@ function App() {
       <Route path='/profile' element={<Profile />} />
       <Route path='/cart' element={<Cart />} />
       <Route path='/exam' element={<Exam />} />
-
-
+      <Route path='/bid' element={<Bid1/>} />
     </Routes>
 
   )
