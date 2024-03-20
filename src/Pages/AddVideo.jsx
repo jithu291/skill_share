@@ -18,7 +18,7 @@ function AddVideo() {
 
   
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () =>setShow(true);
 
   const handleFileChange = (event) => {
     setSelectedFile(URL.createObjectURL(event.target.files[0]));
@@ -58,6 +58,8 @@ function AddVideo() {
       console.log('error in adding data', err);
     }
   };
+
+  
 
   return (
     <div>

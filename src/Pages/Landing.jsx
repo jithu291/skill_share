@@ -5,6 +5,8 @@ import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import AddVideo from './AddVideo';
 import axios from 'axios';
 import { MDBIcon } from 'mdb-react-ui-kit';
+import Exam from './Exam';
+import { Link } from 'react-router-dom';
 
 
 
@@ -129,7 +131,9 @@ function Landing() {
           />
          
         </div>
-      
+       <Link to="/exam" className='exam btn btn-success'>
+       <i class="fa-solid fa-circle-info mt-1 me-1"  style={{ fontSize: '15px' }}></i>Exam
+       </Link>      
         <AddVideo />
       </div>
       <div className='container mt-5 mb-5'  >

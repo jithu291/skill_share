@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal';
 import { FaCloudUploadAlt, FaUserEdit } from "react-icons/fa";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Profile() {
   const [data, setData] = useState(null)
