@@ -7,7 +7,7 @@ import axios from 'axios';
 import { MDBIcon } from 'mdb-react-ui-kit';
 import Exam from './Exam';
 import { Link } from 'react-router-dom';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function Landing() {
@@ -71,6 +71,7 @@ function Landing() {
         }
       );
       console.log('Item added to cart:', response.data);
+      toast.success('Item added to cart successfully');
       // You can update state or perform any other action upon successful addition to cart
     } catch (error) {
       console.error('Error adding item to cart:', error);
@@ -124,6 +125,8 @@ function Landing() {
         }
       );
       console.log('Bid placed successfully:', response.data);
+      handleClose();
+      toast.success('Item added to bid successfully');
       // You can update state or perform any other action upon successful bid placement
     } catch (error) {
       console.error('Error placing bid:', error);
@@ -199,7 +202,7 @@ function Landing() {
                     <Button onClick={() => { addToCart(selectedItem.id); handleClose(); }} ><i class="fa-solid fa-cart-plus"></i></Button>
                   </div>
                   <div style={{ marginLeft: '280px', marginTop:'40px'}}> 
-                    <Button onClick={() => { placeBid(selectedItem.id); }} className='btn btn-primary'>BID<i class="fa-solid fa-coins ms-2"></i></Button>
+                    <Button onClick={() => { placeBid(selectedItem.id); handleClose(); }} className='btn btn-primary'>BID<i class="fa-solid fa-coins ms-2"></i></Button>
                   </div>
                 </Col>
               </Row>
@@ -208,7 +211,7 @@ function Landing() {
           </Modal>
         </div>
       </div>
-
+      <ToastContainer />
     </>
   )
 }
