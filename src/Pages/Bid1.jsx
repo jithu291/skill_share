@@ -45,7 +45,7 @@ function Bid1() {
                                 <tr style={{backgroundColor:'#0095a9'}} className='table-info fs-3'>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>price</th>
+                                    <th>Bid price</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -55,7 +55,7 @@ function Bid1() {
                                 <tr key={index} style={{color:'red'}} className='fs-3'>
                                     <td>{index + 1}</td>
                                     <td> {bid.title} </td>
-                                    <td>{bid.price}</td>
+                                    <td>{bid.amount}</td>
                                     <td>{bid.status}</td>
                                   
                                     <td className=' text-center'><i style={{marginLeft:'-100px'}} className="fa-solid fa-trash "></i></td>
