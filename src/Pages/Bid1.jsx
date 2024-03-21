@@ -34,7 +34,7 @@ function Bid1() {
   
   return (
   <>
-   <div className='d-flex justify-content-center align-items-center'>
+   <div className='d-flex justify-content-center align-items-center '>
     <img  style={{width:'50%', height:'350px'}} src={bid} alt="" />
    </div>
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin:'200px', marginTop:'70px' }}>

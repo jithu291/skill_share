@@ -6,6 +6,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toast } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function Exam() {
 
@@ -20,7 +21,7 @@ function Exam() {
     const [accessToken, setAccessToken] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [pdfURL, setPdfURL] = useState(null);
-
+    const navigate = useNavigate()
 
     useEffect(()=>{
         const token = sessionStorage.getItem('token')
@@ -54,6 +55,8 @@ function Exam() {
             // Handle response
             console.log('File uploaded successfully:', response.data);
             toast.success(`File uploaded successfully`);
+            navigate('/landing')
+
            
             // You may want to perform additional actions here
         } catch (error) {
@@ -149,7 +152,7 @@ console.log(data);
     });
 
     return (
-        <div style={{height:'100vh',width:'100%'}}>
+        <div style={{height:'100vh',width:'100%'}} >
             <div className='d-flex justify-content-center mt-3'>
                 <h1>Exam Questions Releted {currentUser.skills}</h1>
             </div>
@@ -175,7 +178,7 @@ console.log(data);
             </div>
             <div className='d-flex justify-content-center mt-2'>
                 <Button
-                    className='upload'
+                    className='upload mb-2 shadow'
                     component="label"
                     role={undefined}
                     variant="contained"
