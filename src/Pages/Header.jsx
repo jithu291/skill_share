@@ -24,6 +24,9 @@ function Header({ showUserButton }) {
                       <div style={{ marginLeft: '-150px ' }}>
                         <Link to={'/cart'} className='cartbtn btn  shadow bg-primary' style={{ padding: '6px', width: '50px', height: '50px', color: 'white' }} variant="contained"><i style={{marginTop:'11px'}} class=" fa-solid fa-cart-shopping"></i></Link>
                       </div>
+                      <div style={{ marginLeft: '-150px ' }}>
+                        <Link to={'/bid'} className='cartbtn btn  shadow bg-primary' style={{ padding: '6px', width: '50px', height: '50px', color: 'white' }} variant="contained"><i style={{marginTop:'11px'}} class=" fa-solid fa-coins"></i></Link>
+                      </div>
                     </div>
                   ) : (
                     <Link to={'/login'} className='btn rounded shadow bg-primary' style={{ padding: '6px', width: '100px', marginLeft: '900px', color: 'white' }} variant="contained">Login</Link>

@@ -17,16 +17,15 @@ function Exam() {
     
     const [ users,setUsers] = useState([])
     const [currentUser,setCurrentUser] = useState([])
-    const [accessToken, setAccessToken] = useState('');
+    // const [accessToken, setAccessToken] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [pdfURL, setPdfURL] = useState(null);
 
+    const accessToken = sessionStorage.getItem('token')
 
     useEffect(()=>{
-        const token = sessionStorage.getItem('token')
-    if (token) {
-      setAccessToken(token)
-    }
+    
+        fetchData(); 
     }, []);
  
   
@@ -77,7 +76,6 @@ function Exam() {
 
         }
     }
-    fetchData(); 
     //find current user
     useEffect(() => {
         if (users.length > 0 && userid) {
@@ -149,6 +147,7 @@ console.log(data);
     });
 
     return (
+        <>
         <div style={{height:'100vh',width:'100%'}}>
             <div className='d-flex justify-content-center mt-3'>
                 <h1>Exam Questions Releted {currentUser.skills}</h1>
@@ -188,6 +187,7 @@ console.log(data);
             </div>
             <ToastContainer theme='colored' autoClose='2000' />
         </div>
+        </>
     )
 }
 
