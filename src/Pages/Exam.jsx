@@ -18,16 +18,16 @@ function Exam() {
     
     const [ users,setUsers] = useState([])
     const [currentUser,setCurrentUser] = useState([])
-    const [accessToken, setAccessToken] = useState('');
+    // const [accessToken, setAccessToken] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [pdfURL, setPdfURL] = useState(null);
+
+    const accessToken = sessionStorage.getItem('token')
     const navigate = useNavigate()
 
     useEffect(()=>{
-        const token = sessionStorage.getItem('token')
-    if (token) {
-      setAccessToken(token)
-    }
+    
+        fetchData(); 
     }, []);
  
   
@@ -80,7 +80,6 @@ function Exam() {
 
         }
     }
-    fetchData(); 
     //find current user
     useEffect(() => {
         if (users.length > 0 && userid) {
@@ -152,6 +151,7 @@ console.log(data);
     });
 
     return (
+        <>
         <div style={{height:'100vh',width:'100%'}} >
             <div className='d-flex justify-content-center mt-3'>
                 <h1>Exam Questions Releted {currentUser.skills}</h1>
@@ -160,7 +160,7 @@ console.log(data);
             <div className='question-box' style={{height:'500px',width:'100%',padding:'10px',border:"5px solid black",borderRadius:'5px',overflow:'scroll',scrollbarWidth:'none'}}>
             {data && data.map((question, index) => (
                         <div key={index} className='question d-flex m-5'>
-                            <h5>{index+1}<span>)</span></h5>
+                            <h5>{index+1}<span></span></h5>
                             <h5 className='ms-3'>{question.question}</h5>
                         </div>
                     ))}
@@ -191,6 +191,7 @@ console.log(data);
             </div>
             <ToastContainer theme='colored' autoClose='2000' />
         </div>
+        </>
     )
 }
 
