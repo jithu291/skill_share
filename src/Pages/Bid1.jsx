@@ -21,7 +21,7 @@ function Bid1() {
           const response = await axios.get('http://localhost:8000/api/bids/', {
             headers: {
               Authorization: `Token ${token}`,
-              'Content-Type': 'multipart/form-data'
+              'Content-Type': 'application/json'
             },
           });
       
@@ -31,6 +31,31 @@ function Bid1() {
           console.error('Error fetching bids:', error);
         }
       };
+
+      const handleBidDelete  = async (Id) => {
+        try{
+           const token = sessionStorage.getItem( 'token' );
+           if(!token){
+            console.log("token not found , please login");
+            return;
+           }
+           const res = await axios.delete(`http://127.0.0.1:8000/api/bids/${Id}/`, 
+           {
+            headers:{
+              Authorization:`Token ${token}`,
+              'Content-Type': 'application/json'
+            },
+           })
+
+           setBids(bids.filter(id => bid.id !== id));
+           console.log(res.data);
+           console.log('Bid deleted successfully');
+           fetchBids()
+           
+        }catch(error){
+               console.log('Error deleting the Bid : ', error);
+        }
+      }
   
   return (
   <>
@@ -58,7 +83,9 @@ function Bid1() {
                                     <td>{bid.amount}</td>
                                     <td>{bid.status}</td>
                                   
-                                    <td className=' text-center'><i style={{marginLeft:'-100px'}} className="fa-solid fa-trash "></i></td>
+                                    <td className=' text-center'>
+                                      <button onClick={()=>handleBidDelete(bid.id)}><i className="fa-solid fa-trash"></i></button>
+                                    </td>
                                 </tr>
                                 ))}
                                

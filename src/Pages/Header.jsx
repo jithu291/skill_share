@@ -9,9 +9,9 @@ function Header({ showUserButton }) {
   return (
     <>
       <div >
-        <Navbar style={{ width: '100%' }} expand="lg" className="bg-body-tertiary">
+        <Navbar style={{ width: '100%'}} expand="lg" className='headers'  >
           <Container>
-            <Navbar.Brand style={{ marginLeft: '-50px' }} className='navname' href=""> <i class="fa-solid fa-graduation-cap"></i> Skill-Share</Navbar.Brand>
+            <Navbar.Brand style={{ marginLeft: '-50px' }} className='navname' href=""> <i class="fa-solid fa-graduation-cap"></i> SKILL  SHARE</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Stack spacing={2} direction="row">
@@ -26,7 +26,7 @@ function Header({ showUserButton }) {
                       </div>
                     </div>
                   ) : (
-                    <Link to={'/login'} className='btn rounded shadow bg-primary' style={{ padding: '6px', width: '100px', marginLeft: '900px', color: 'white' }} variant="contained">Login</Link>
+                    <Link to={'/login'} className='btn rounded shadow bg-primary' style={{ padding: '6px', width: '100px', marginLeft: '850px', color: 'white' }} variant="contained">Login</Link>
                   )
                 }
 

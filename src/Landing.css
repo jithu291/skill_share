@@ -9,10 +9,29 @@
     background: linear-gradient(to right,  #ffffff);
     background-color: rgba(255, 255, 255, 0.5);
 }
-#row{
+/* #row{
     background: linear-gradient(to right, #ffd2c3,#ffffff);
     background-size: cover;
     background-position: center;
     position: absolute;
     height: 100vh;
+} */
+.backgroundImg{
+    background-image: url(./assets/Images/homeImg.png);
+    width: 100%;
+    background-size: cover;
+    height: 103vh;
+    display: flex;
+    margin-top: -90px;
+
+    
+}
+*{
+    scrollbar-width: none;
+    margin: 0px;
+    padding: 0px;
+}
+.headers{
+    background-color: rgba(159, 195, 216, 0.167);
+
 }
