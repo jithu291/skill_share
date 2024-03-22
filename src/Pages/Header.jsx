@@ -20,7 +20,7 @@ function Header({ showUserButton }) {
                 {
                   showUserButton ? (
                     <div className='d-flex'>
-                      <Link to={'/profile'} className='profilebtn btn  shadow bg-primary' style={{ padding: '6px', width: '50px', height: '50px', marginLeft: '950px', color: 'white' }} variant="contained"><i class="fa-solid fa-user mt-2"></i></Link>
+                      <Link to={'/profile'} className='profilebtn btn  shadow bg-primary' style={{ padding: '6px', width: '50px', height: '50px', marginLeft: '900px', color: 'white' }} variant="contained"><i class="fa-solid fa-user mt-2"></i></Link>
                       <div style={{ marginLeft: '-150px ' }}>
                         <Link to={'/cart'} className='cartbtn btn  shadow bg-primary' style={{ padding: '6px', width: '50px', height: '50px', color: 'white' }} variant="contained"><i style={{marginTop:'11px'}} class=" fa-solid fa-cart-shopping"></i></Link>
                       </div>
