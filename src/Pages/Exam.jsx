@@ -6,6 +6,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toast } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function Exam() {
 
@@ -22,6 +23,7 @@ function Exam() {
     const [pdfURL, setPdfURL] = useState(null);
 
     const accessToken = sessionStorage.getItem('token')
+    const navigate = useNavigate()
 
     useEffect(()=>{
     
@@ -53,6 +55,8 @@ function Exam() {
             // Handle response
             console.log('File uploaded successfully:', response.data);
             toast.success(`File uploaded successfully`);
+            navigate('/landing')
+
            
             // You may want to perform additional actions here
         } catch (error) {
@@ -148,7 +152,7 @@ console.log(data);
 
     return (
         <>
-        <div style={{height:'100vh',width:'100%'}}>
+        <div style={{height:'100vh',width:'100%'}} >
             <div className='d-flex justify-content-center mt-3'>
                 <h1>Exam Questions Releted {currentUser.skills}</h1>
             </div>
@@ -156,7 +160,7 @@ console.log(data);
             <div className='question-box' style={{height:'500px',width:'100%',padding:'10px',border:"5px solid black",borderRadius:'5px',overflow:'scroll',scrollbarWidth:'none'}}>
             {data && data.map((question, index) => (
                         <div key={index} className='question d-flex m-5'>
-                            <h5>{index+1}<span>)</span></h5>
+                            <h5>{index+1}<span></span></h5>
                             <h5 className='ms-3'>{question.question}</h5>
                         </div>
                     ))}
@@ -174,7 +178,7 @@ console.log(data);
             </div>
             <div className='d-flex justify-content-center mt-2'>
                 <Button
-                    className='upload'
+                    className='upload mb-2 shadow'
                     component="label"
                     role={undefined}
                     variant="contained"

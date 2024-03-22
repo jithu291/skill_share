@@ -93,8 +93,9 @@ function Landing() {
         },
       });
 
+
       // After successful deletion, fetch updated cart items
-      fetchCartItems();
+      fetchDetail ();
     } catch (error) {
       console.error("Error deleting item from cart:", error);
     }
