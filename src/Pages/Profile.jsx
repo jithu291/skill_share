@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 function Profile() {
   const [data, setData] = useState(null)
+  const [users, setUsers] = useState([]);
   const [uid, setUid] = useState('')
   const id = sessionStorage.getItem("id")
   const [accessToken, setAccessToken] = useState('');
@@ -19,10 +20,10 @@ function Profile() {
     name: '',
     bio: '',
     skills: '',
-    profile_pic:null,
+    profile_pic: null,
     user: id
   });
- 
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -32,7 +33,7 @@ function Profile() {
     // Navigate to home page
     navigate('/');
   };
-  
+
   // console.log(data);
 
   useEffect(() => {
@@ -40,8 +41,11 @@ function Profile() {
     if (token) {
       setAccessToken(token)
       fetchData(token)
+      fetchAllUsers(token);
     }
   }, [])
+
+  
 
   const fetchData = async (token) => {
     try {
@@ -63,6 +67,19 @@ function Profile() {
     }
   }
 
+  const fetchAllUsers = async (token) => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/userprofile/', {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      });
+      setUsers(response.data);
+      console.log('all users', users);
+    } catch (err) {
+      console.error('Error fetching all users:', err);
+    }
+  };
 
   //
   const [show, setShow] = useState(false);
@@ -124,16 +141,19 @@ function Profile() {
     }
   };
   if (data == null) return (<></>)
-  
+
+ 
+
+
   return (
     <>
 
 
       <div>
         {/* {data.map((item, index) => ( */}
-        <div className=' row ' id='row' style={{ width: '100vw', height:'100vh'}} >
+        <div className=' row d-flex ' id='row' style={{ width: '100vw', height: '100vh' }} >
           <div className=' menu col-lg-1 shadow ' style={{ height: '592px' }}>
-            <h2 style={{ marginLeft: '120px', width: '260px' }} className='mt-3' >welcome <span className='text-danger' style={{ fontWeight: 'bolder', fontSize: '40px' }}>{data?.user} </span></h2>
+            <h2 style={{ marginLeft: '100px', width: '260px' }} className='mt-3' >welcome <span className='text-danger' style={{ fontWeight: 'bolder', fontSize: '40px' }}>{data?.user} </span></h2>
 
             <div style={{ marginTop: '200px', marginLeft: '20px' }} >
               <Link to={'/landing'} className='d-flex gap-1' style={{ textDecoration: 'none', color: 'grey' }}><i class="fa-solid fa-house mt-1"></i><p>Home</p></Link>
@@ -142,18 +162,21 @@ function Profile() {
             <div style={{ marginTop: '6px', marginLeft: '20px' }} >
               <Link to={'/cart'} className='d-flex gap-1' style={{ textDecoration: 'none', color: 'grey' }}><i class="fa-solid fa-cart-shopping mt-1"></i><p>Cart</p></Link>
             </div>
+            <div>
+              <Button onClick={handleLogout} className='d-flex gap-1 ' style={{ marginTop: '30px', marginLeft: '200px' }} variant="outline-danger"><i class="fa-solid fa-right-from-bracket mt-1"></i>Logout </Button>{' '}
 
+            </div>
 
 
           </div>
 
 
-          <div className=' col-lg-8 rounded shadow d-flex flex-column align-items-center justify-content-center  mt-4 ' id='inptdiv' style={{ width: '40%', height: '90%', marginLeft: '300px' }}>
+          <div className=' col-lg-7  rounded shadow d-flex flex-column align-items-center justify-content-center  mt-4 ' id='inptdiv' style={{ width: '40%', height: '90%', marginLeft: '220px' }}>
             {!data.profile_pic &&
-            
-            <h1>Upload profile</h1>
+
+              <h1>Upload profile</h1>
             }
-              <img src={data.profile_pic && data.profile_pic} alt=""  style={{width:'200px',height:'200px', borderRadius:'100px', marginTop:'-4   0px'}}/>
+            <img src={data.profile_pic && data.profile_pic} alt="" style={{ width: '200px', height: '200px', borderRadius: '100px', marginTop: '-40px' }} />
 
             <div className='border rounded border-dark  w-50 mt-4'>
               <p className='mt-1 text-center'>{data?.name}</p>
@@ -171,10 +194,30 @@ function Profile() {
             </div>
           </div>
 
-          <div className='col-lg-2 '>  
-          <Button onClick={handleLogout} className='d-flex gap-1 ' style={{marginTop:'30px', marginLeft:'200px'}} variant="outline-danger"><i class="fa-solid fa-right-from-bracket mt-1"></i>Logout </Button>{' '}
+          <div className=' row col-lg-2 border shadow mt-4 d-flex justify-content-center' style={{ width: '30%', height: '90%', marginLeft: '45px' }}>
+            <div>
+              <h2 className='text-center'>All Users</h2>
+            </div>
+            <div className='row-sm-1  d-flex  justify-content-between  ' style={{ marginTop: '-10px', height: '10%', width: '100%', backgroundColor: 'lightgray' }}>
+              <h5 className='mt-2'>Total Users: 2</h5>
+              <Form.Control
+                style={{ width: '60%', height: '65%' }}
+                type="text"
+                placeholder="Search"
+                className="mt-2"
+                value=''
+              />
+            </div>
+            <div className='border'style={{height:'400px'}}>
+              
+           <ul className='mt-3'>
+           {users.map((user) => (
+            <li key={user.id}>  {user.user} </li>
+            ))}
+           </ul>
           </div>
-
+          </div>
+         
         </div>
 
 
@@ -202,13 +245,13 @@ function Profile() {
 
           <FloatingLabel controlId="bio" label="Bio" className='mt-2'>
             <Form.Control
-            type="textarea"
+              type="textarea"
               name="bio"
               value={formData.bio}
               onChange={handleInputChange}
             />
           </FloatingLabel>
-          <FloatingLabel controlId="skills" label="Skills"  className='mt-2'>
+          <FloatingLabel controlId="skills" label="Skills" className='mt-2'>
             <Form.Select
               name="skills"
               value={formData.skills}
@@ -222,18 +265,18 @@ function Profile() {
             </Form.Select>
           </FloatingLabel>
 
-          
-          <label className='border rounded mt-2 d-flex' style={{width:'465px'}}>
-              <input type="file" style={{ display: 'none' }} onChange={handleFileChange}/>
-              {!formData.profile_pic&&( <div className='d-flex ms-3 gap-1 mt-3  '>
-                <p>Add Profile Picture</p>
-                <i class="fa-solid fa-cloud-arrow-up mt-1 "></i>
-              </div>   )}
+
+          <label className='border rounded mt-2 d-flex' style={{ width: '465px' }}>
+            <input type="file" style={{ display: 'none' }} onChange={handleFileChange} />
+            {!formData.profile_pic && (<div className='d-flex ms-3 gap-1 mt-3  '>
+              <p>Add Profile Picture</p>
+              <i class="fa-solid fa-cloud-arrow-up mt-1 "></i>
+            </div>)}
 
 
-             {formData.profile_pic && <img src={formData.profile_pic &&URL.createObjectURL(formData.profile_pic)  } alt="" style={{ width: '50px'  }} />}
-              
-            </label>
+            {formData.profile_pic && <img src={formData.profile_pic && URL.createObjectURL(formData.profile_pic)} alt="" style={{ width: '50px' }} />}
+
+          </label>
 
         </Modal.Body>
         <Modal.Footer>
