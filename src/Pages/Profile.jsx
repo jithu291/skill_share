@@ -45,7 +45,7 @@ function Profile() {
     }
   }, [])
 
-  
+
 
   const fetchData = async (token) => {
     try {
@@ -57,7 +57,7 @@ function Profile() {
 
       setData(response.data)
       // console.log("api fetching sccessfull" , response.data );
-      // console.log(response.data);
+    
 
       setUid(response.data);
       console.log('user', uid);
@@ -76,6 +76,7 @@ function Profile() {
       });
       setUsers(response.data);
       console.log('all users', users);
+        console.log(response.data);
     } catch (err) {
       console.error('Error fetching all users:', err);
     }
@@ -142,7 +143,7 @@ function Profile() {
   };
   if (data == null) return (<></>)
 
- 
+
 
 
   return (
@@ -162,10 +163,8 @@ function Profile() {
             <div style={{ marginTop: '6px', marginLeft: '20px' }} >
               <Link to={'/cart'} className='d-flex gap-1' style={{ textDecoration: 'none', color: 'grey' }}><i class="fa-solid fa-cart-shopping mt-1"></i><p>Cart</p></Link>
             </div>
-            <div>
-              <Button onClick={handleLogout} className='d-flex gap-1 ' style={{ marginTop: '30px', marginLeft: '200px' }} variant="outline-danger"><i class="fa-solid fa-right-from-bracket mt-1"></i>Logout </Button>{' '}
+            <Button onClick={handleLogout} className='d-flex gap-1 ' style={{ marginTop: '5px', width:'90px' }} variant="danger"><i class="fa-solid fa-right-from-bracket mt-1"></i>Logout </Button>
 
-            </div>
 
 
           </div>
@@ -194,30 +193,28 @@ function Profile() {
             </div>
           </div>
 
-          <div className=' row col-lg-2 border shadow mt-4 d-flex justify-content-center' style={{ width: '30%', height: '90%', marginLeft: '45px' }}>
+          <div className=' row col-lg-2  shadow mt-4 d-flex justify-content-center' style={{ width: '30%', height: '90%', marginLeft: '45px' }}>
             <div>
               <h2 className='text-center'>All Users</h2>
             </div>
-            <div className='row-sm-1  d-flex  justify-content-between  ' style={{ marginTop: '-10px', height: '10%', width: '100%', backgroundColor: 'lightgray' }}>
-              <h5 className='mt-2'>Total Users: 2</h5>
-              <Form.Control
-                style={{ width: '60%', height: '65%' }}
-                type="text"
-                placeholder="Search"
-                className="mt-2"
-                value=''
-              />
+            <div className='row-sm-1  d-flex  justify-content-between rounded shadow  ' style={{ marginTop: '-10px', height: '10%', width: '100%', backgroundColor: 'lightgray' }}>
+              <h5 className='mt-2'>Total Users: {users.length}</h5>
+
             </div>
-            <div className='border'style={{height:'400px'}}>
-              
-           <ul className='mt-3'>
-           {users.map((user) => (
-            <li key={user.id}>  {user.user} </li>
-            ))}
-           </ul>
+            <div className='shadow rounded' style={{ height: '400px', backgroundColor:'lightgrey'}}>
+
+              <ul className='mt-3 '>
+                {users.map((user) => (
+                  <div className='rounded mb-2  ' style={{ height: '30px', border: '1px solid' }}>
+                    <li className='ms-1' key={user.id}>
+                      <Link style={{ textDecoration: 'none', color: 'black' }}>{user.user}</Link>
+                    </li>
+                  </div>
+                ))}
+              </ul>
+            </div>
           </div>
-          </div>
-         
+
         </div>
 
 

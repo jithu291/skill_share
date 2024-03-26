@@ -11,6 +11,7 @@ import Profile from './Pages/Profile'
 import Cart from './Pages/Cart'
 import Exam from './Pages/Exam'
 import Bid1 from './Pages/Bid1'
+import ChatPage from './Pages/ChatPage'
 
 
 
@@ -29,6 +30,7 @@ function App() {
       <Route path='/cart' element={<Cart />} />
       <Route path='/exam' element={<Exam />} />
       <Route path='/bid' element={<Bid1/>} />
+      <Route path='/chatpage' element={<ChatPage/>} />
     </Routes>
 
   )
