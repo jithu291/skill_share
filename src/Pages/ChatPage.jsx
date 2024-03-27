@@ -6,7 +6,6 @@ function ChatPage() {
     
   return (
     <div style={{height:'100%'}}>
-      {/* <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> */}
 <div class="container justify-content-center " >
 <div class="row bootstrap snippets bootdeys" >
     <div class="col-md-10" >
@@ -30,7 +29,6 @@ function ChatPage() {
                 <span class="direct-chat-name pull-left">Alexander Pierce</span>
                 <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
               </div>
-              {/* <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_1.jpg" alt="Message User Image"><!-- /.direct-chat-img --> */}
               <div class="direct-chat-text shadow border"  style={{maxWidth:'300px',marginright:'610px'}}>
                 Is this template really for free? That's unbelievable!
               </div>
@@ -41,7 +39,6 @@ function ChatPage() {
                 <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
                 <span class="direct-chat-name pull-right">Sarah Bullock</span>
               </div>
-              {/* <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_2.jpg" alt="Message User Image"><!-- /.direct-chat-img --> */}
               <div class="direct-chat-text shadow border" style={{maxWidth:'300px',marginLeft:'610px'}} >
                 You better believe it!
               </div>
