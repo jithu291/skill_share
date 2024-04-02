@@ -1,7 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../Pages/ChatPage.css'
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 function ChatPage() {
+
+  const { userId } = useParams();
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchMessages();
+  }, [userId]);
+
+  const fetchMessages = async () => {
+    try {
+      const token = sessionStorage.getItem('token');
+      const response = await axios.post(`http://localhost:8000/api/send-message/${userId}/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setMessages(response.data);
+    } catch (error) {
+      // Handle authentication or authorization errors
+      if (error.response && error.response.status === 401) {
+        setError('Unauthorized: You are not authorized to access this page.');
+      } else {
+        setError('Error fetching messages. Please try again later.');
+        console.error('Error fetching messages:', error);
+      }
+    }
+  };
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    try {
+      const token = sessionStorage.getItem('token');
+      await axios.post(`http://localhost:8000/api/send-message/${userId}/`, {
+        message: newMessage,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setNewMessage('');
+      // After sending the message, refetch messages to update the chat
+      fetchMessages();
+    } catch (error) {
+      setError('Error sending message. Please try again later.');
+      console.error('Error sending message:', error);
+    }
+  };
   return (
     <div style={{height:'100%'}}>
       {/* <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> */}

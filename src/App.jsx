@@ -29,7 +29,7 @@ function App() {
       <Route path='/cart' element={<Cart />} />
       <Route path='/exam' element={<Exam />} />
       <Route path='/bid' element={<Bid1/>} />
-      <Route path='/chatpage' element={<ChatPage/>} />
+      <Route path='/chatpage/:userId' element={<ChatPage/>} />
     </Routes>
 
   )

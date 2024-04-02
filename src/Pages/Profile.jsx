@@ -210,7 +210,7 @@ function Profile() {
                     <li className='ms-1 mt-1' key={user.id}>
                       <Link style={{ textDecoration: 'none', color: 'black' }}>{user.user}</Link>
                     </li>
-                    <Link  to={'/chatpage'}><i style={{marginRight:'20px', fontSize:'25px', color:'green'}} class="fa-brands fa-rocketchat mt-1"></i></Link>
+                    <Link  to={`/chatpage/${user.id}`}><i style={{marginRight:'20px', fontSize:'25px', color:'green'}} class="fa-brands fa-rocketchat mt-1"></i></Link>
                   </div>
                 ))}
               </ul>
