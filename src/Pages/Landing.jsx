@@ -143,11 +143,11 @@ function Landing() {
 
   return (
     <>
-
+<div className='landing ' style={{height:'60rem'}}>
       <div>
         <Header showUserButton={true} />
       </div>
-      <div className='mt-3 ms-4 me-5 d-flex justify-content-between'>
+      <div className=' mt-3 ms-4 me-5 d-flex justify-content-between'>
         <h1 className='head1'>Recommended For You</h1>
         <div className='d-flex align-items-center text-center justify-content-center'>
 
@@ -168,7 +168,7 @@ function Landing() {
       <div className='container mt-5 mb-5'  >
         <div className="row row-cols-1 row-cols-md-4 g-4  d-flex justify-content-between ">
           {filteredProducts.map((item, index) => (
-            <Card style={{ width: '15rem' }} key={index} >
+            <Card style={{ width: '15rem' }} key={index} className='shadow' >
               <Card.Img className='mt-2' variant="top" style={{ height: '200px' }} src={item.media} onClick={() => handleCardClick(item)} />
               <Card.Body>
                 <Card.Title className='d-flex justify-content-center' >{item.title}</Card.Title>
@@ -181,7 +181,103 @@ function Landing() {
             </Card>
           ))}
         </div>
+</div>
 
+<div>
+<h1 className='head1 ms-5'>
+ Coding Based
+  </h1>
+
+  <div className='container mt-5 mb-5'  >
+        <div className="row row-cols-1 row-cols-md-4 g-4  d-flex justify-content-between ">
+          {detail.filter(item => item.category === 'coding') .map((item, index) => (
+            <Card style={{ width: '15rem' }} key={index} className='shadow' >
+              <Card.Img className='mt-2' variant="top" style={{ height: '200px' }} src={item.media} onClick={() => handleCardClick(item)} />
+              <Card.Body>
+                <Card.Title className='d-flex justify-content-center' >{item.title}</Card.Title>
+                <Card.Text className='d-flex justify-content-center' >
+                  {item.description}            </Card.Text>
+                <a href="#!" style={{ color: 'red' }} onClick={() => handleDeleteItem(item.id)}>
+                  <MDBIcon fas icon="trash-alt" />
+                </a>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
+</div>
+</div>
+
+<div>
+<h1 className='head1 ms-5'>
+ Drawing Based
+  </h1>
+
+  <div className='container mt-5 mb-5'  >
+        <div className="row row-cols-1 row-cols-md-4 g-4  d-flex justify-content-between ">
+          {detail.filter(item => item.category === 'drawing') .map((item, index) => (
+            <Card style={{ width: '15rem' }} key={index} className='shadow' >
+              <Card.Img className='mt-2' variant="top" style={{ height: '200px' }} src={item.media} onClick={() => handleCardClick(item)} />
+              <Card.Body>
+                <Card.Title className='d-flex justify-content-center' >{item.title}</Card.Title>
+                <Card.Text className='d-flex justify-content-center' >
+                  {item.description}            </Card.Text>
+                <a href="#!" style={{ color: 'red' }} onClick={() => handleDeleteItem(item.id)}>
+                  <MDBIcon fas icon="trash-alt" />
+                </a>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
+</div>
+</div>
+
+<div>
+<h1 className='head1 ms-5'>
+ Communication Based
+  </h1>
+
+  <div className='container mt-5 mb-5'  >
+        <div className="row row-cols-1 row-cols-md-4 g-4  d-flex justify-content-between ">
+          {detail.filter(item => item.category === 'communication') .map((item, index) => (
+            <Card style={{ width: '15rem' }} key={index} className='shadow' >
+              <Card.Img className='mt-2' variant="top" style={{ height: '200px' }} src={item.media} onClick={() => handleCardClick(item)} />
+              <Card.Body>
+                <Card.Title className='d-flex justify-content-center' >{item.title}</Card.Title>
+                <Card.Text className='d-flex justify-content-center' >
+                  {item.description}            </Card.Text>
+                <a href="#!" style={{ color: 'red' }} onClick={() => handleDeleteItem(item.id)}>
+                  <MDBIcon fas icon="trash-alt" />
+                </a>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
+</div>
+</div>
+
+<div>
+<h1 className='head1 ms-5'>
+ Crafting Based
+  </h1>
+
+  <div className='container mt-5 mb-5'  >
+        <div className="row row-cols-1 row-cols-md-4 g-4  d-flex justify-content-between ">
+          {detail.filter(item => item.category === 'crafting') .map((item, index) => (
+            <Card style={{ width: '15rem' }} key={index} className='shadow' >
+              <Card.Img className='mt-2' variant="top" style={{ height: '200px' }} src={item.media} onClick={() => handleCardClick(item)} />
+              <Card.Body>
+                <Card.Title className='d-flex justify-content-center' >{item.title}</Card.Title>
+                <Card.Text className='d-flex justify-content-center' >
+                  {item.description}            </Card.Text>
+                <a href="#!" style={{ color: 'red' }} onClick={() => handleDeleteItem(item.id)}>
+                  <MDBIcon fas icon="trash-alt" />
+                </a>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
+</div>
+</div>
         <div>
           <Modal size='lg' show={selectedItem !== null} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -199,6 +295,8 @@ function Landing() {
                   </h2>
                   <p className='fw-bolder mt-4'>Description: <span style={{ fontWeight: 'lighter' }}  >{selectedItem ? selectedItem.description : ""}</span></p>
                   <p className='fw-bolder'>Price: <span style={{ fontWeight: 'lighter' }}>{selectedItem ? selectedItem.price : ""}</span></p>
+                  <p className='fw-bolder'>Category: <span style={{ fontWeight: 'lighter' }}>{selectedItem ? selectedItem.category : ""}</span></p>
+
                   <div style={{ marginLeft: '280px', marginTop: '-30px' }} className='d-flex justify-content-evenly'>
                     <Button onClick={() => { addToCart(selectedItem.id); handleClose(); }} ><i class="fa-solid fa-cart-plus"></i></Button>
                   </div>

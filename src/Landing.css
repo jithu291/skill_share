@@ -35,3 +35,6 @@
     background-color: rgba(159, 195, 216, 0.167);
 
 }
+.landing{
+    background:linear-gradient(to right , rgb(219, 219, 219) , rgba(236, 172, 127, 0.942))
+}

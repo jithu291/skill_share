@@ -1,32 +1,48 @@
 import React from 'react'
 import '../Pages/ChatPage.css'
 
+
 function ChatPage() {
+  const { selectedUserId, selectedUserName } = useUser();
+  const [message, setMessage] = useState('');
+
+  const handleMessageSend = () => {
+    if (message.trim() === '') {
+      return;
+    }
+    axios.post(`http://localhost:8000/api/send-message/${selectedUserId}/`, {
+      message: message
+    })
+    .then(response => {
+      console.log('Message sent successfully:', response.data);
+      // Optionally, you can display a success message or update the chat UI
+    })
+    .catch(error => {
+      console.error('Error sending message:', error);
+      // Handle error
+    });
+
+    // Clear the message input field after sending the message
+    setMessage('');
+  };
 
     
   return (
     <div style={{height:'100%'}}>
-<div class="container justify-content-center " >
+      {/* <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> */}
+<div class="container justify-content-center mt-3" >
 <div class="row bootstrap snippets bootdeys" >
     <div class="col-md-10" >
       <div class="box box-primary direct-chat direct-chat-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Direct Chat</h3>
     
-          <div class="box-tools pull-right">
-            <span data-toggle="tooltip" title="" class="badge bg-light-blue" data-original-title="3 New Messages">3</span>
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
-              <i class="fa fa-comments"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-          </div>
+         
         </div>
         <div class="box-body">
           <div class="direct-chat-messages">
             <div class="direct-chat-msg">
               <div class="direct-chat-info clearfix">
-                <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                <span class="direct-chat-name pull-left">{selectedUserName}</span>
                 <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
               </div>
               <div class="direct-chat-text shadow border"  style={{maxWidth:'300px',marginright:'610px'}}>
@@ -64,11 +80,11 @@ function ChatPage() {
           </div>
         </div>
         <div class="box-footer">
-          <form action="#" method="post">
+          <form action="" method="">
             <div class="input-group">
-              <input type="text" name="message" placeholder="Type Message ..." class="form-control"/>
+              <input type="text" name="message" placeholder="Type Message ..." class="form-control" value={message} onChange={(e)=>setMessage(e.target.value)}/>
                   <span class="input-group-btn">
-                    <button type="submit" class="btn btn-primary btn-flat">Send</button>
+                    <button type="submit" onClick={handleMessageSend} class="btn btn-primary btn-flat">Send</button>
                   </span>
             </div>
           </form>

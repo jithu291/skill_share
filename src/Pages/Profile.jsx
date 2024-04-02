@@ -23,8 +23,15 @@ function Profile() {
     profile_pic: null,
     user: id
   });
+ 
 
   const navigate = useNavigate();
+  const handleUserClick = (userId , userName) => {
+    setSelectedUserId(userId);
+    setSelectedUserName(userName);
+    console.log(`clicked on ${userId}`);
+    navigate(`/chatpage/${userId}`);
+  };
 
   const handleLogout = () => {
     // Clear data stored in sessionStorage
@@ -208,7 +215,7 @@ function Profile() {
                   <div className='rounded mb-2 d-flex justify-content-between  ' style={{ height: '35px', border: '1px solid' }}>
                    
                     <li className='ms-1 mt-1' key={user.id}>
-                      <Link style={{ textDecoration: 'none', color: 'black' }}>{user.user}</Link>
+                      <button onClick={() => handleUserClick(user.id)} style={{ textDecoration: 'none', color: 'black' }}>{user.user}</button>
                     </li>
                     <Link  to={'/chatpage'}><i style={{marginRight:'20px', fontSize:'25px', color:'green'}} class="fa-brands fa-rocketchat mt-1"></i></Link>
                   </div>
