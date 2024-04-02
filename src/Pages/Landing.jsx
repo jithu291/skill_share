@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import Card from 'react-bootstrap/Card';
-import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
+import { Button, Col, Dropdown, Form, Modal, Row } from 'react-bootstrap';
 import AddVideo from './AddVideo';
 import axios from 'axios';
 import { MDBIcon } from 'mdb-react-ui-kit';
@@ -15,6 +15,10 @@ function Landing() {
   const [tokenAccess, setTokenAccess] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+
 
 
   useEffect(() => {
@@ -139,7 +143,9 @@ function Landing() {
     detail.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-
+const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <>
@@ -148,7 +154,19 @@ function Landing() {
         <Header showUserButton={true} />
       </div>
       <div className=' mt-3 ms-4 me-5 d-flex justify-content-between'>
-        <h1 className='head1'>Recommended For You</h1>
+      <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+       Filter  By Category
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="#/action-1"  onClick={() => handleCategoryChange('All')}>All</Dropdown.Item>
+        <Dropdown.Item href="#/action-2"  onClick={() => handleCategoryChange('coding')}>Coding </Dropdown.Item>
+        <Dropdown.Item href="#/action-3"  onClick={() => handleCategoryChange('drawing')}>Drawing</Dropdown.Item>
+        <Dropdown.Item href="#/action-3"  onClick={() => handleCategoryChange('crafting')}> Crafting</Dropdown.Item>
+        <Dropdown.Item href="#/action-3"  onClick={() => handleCategoryChange('communication')}> Communication</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
         <div className='d-flex align-items-center text-center justify-content-center'>
 
           <Form.Control
@@ -167,7 +185,7 @@ function Landing() {
       </div>
       <div className='container mt-5 mb-5'  >
         <div className="row row-cols-1 row-cols-md-4 g-4  d-flex justify-content-between ">
-          {filteredProducts.map((item, index) => (
+          {filteredProducts.filter(item => selectedCategory === 'All' || item.category === selectedCategory).map((item, index) => (
             <Card style={{ width: '15rem' }} key={index} className='shadow' >
               <Card.Img className='mt-2' variant="top" style={{ height: '200px' }} src={item.media} onClick={() => handleCardClick(item)} />
               <Card.Body>
@@ -200,12 +218,12 @@ function Landing() {
                   <p className='fw-bolder mt-4'>Description: <span style={{ fontWeight: 'lighter' }}  >{selectedItem ? selectedItem.description : ""}</span></p>
                   <p className='fw-bolder'>Price: <span style={{ fontWeight: 'lighter' }}>{selectedItem ? selectedItem.price : ""}</span></p>
                   <p className='fw-bolder'>Category: <span style={{ fontWeight: 'lighter' }}>{selectedItem ? selectedItem.category : ""}</span></p>
+                  <a href>{selectedItem ? selectedItem.link : ""}</a>
 
-                  <div style={{ marginLeft: '280px', marginTop: '-30px' }} className='d-flex justify-content-evenly'>
-                    <Button onClick={() => { addToCart(selectedItem.id); handleClose(); }} ><i class="fa-solid fa-cart-plus"></i></Button>
-                  </div>
-                  <div style={{ marginLeft: '280px', marginTop:'40px'}}> 
-                    <Button onClick={() => { placeBid(selectedItem.id); handleClose(); }} className='btn btn-primary'>BID<i class="fa-solid fa-coins ms-2"></i></Button>
+                  <div style={{ marginLeft: '280px', marginTop: '-30px' }} className='d-flex justify-content-evenly gap-4 mt-5'>
+                    <Button style={{height:'35px'}} onClick={() => { addToCart(selectedItem.id); handleClose(); }} ><i class="fa-solid fa-cart-plus"></i></Button>
+                 
+                    <Button  style={{height:'35px', width:''}} onClick={() => { placeBid(selectedItem.id); handleClose(); }} className='btn btn-primary'><i class="fa-solid fa-coins ms-"></i></Button>
                   </div>
                 </Col>
               </Row>

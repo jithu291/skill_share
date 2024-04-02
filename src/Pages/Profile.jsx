@@ -23,7 +23,7 @@ function Profile() {
     profile_pic: null,
     user: id
   });
- 
+const [search , setSearch] = useState('')
 
   const navigate = useNavigate();
   const handleUserClick = (userId , userName) => {
@@ -148,6 +148,12 @@ function Profile() {
       console.error('Error updating profile:', err);
     }
   };
+ 
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+
   if (data == null) return (<></>)
 
 
@@ -207,11 +213,19 @@ function Profile() {
             <div className='row-sm-1  d-flex  justify-content-between rounded shadow  ' style={{ marginTop: '-10px', height: '10%', width: '100%', backgroundColor: 'lightgray' }}>
               <h5 className='mt-2'>Total Users: {users.length}</h5>
 
+              <Form.Control
+            type="text"
+            style={{height:'30px' , width:'140px'}}
+            placeholder="Search"
+            className=" mr-sm-2 mt-2"
+            value={search}
+            onChange={handleSearchChange}
+          />
             </div>
-            <div className='shadow rounded' style={{ height: '400px', backgroundColor:'lightgrey'}}>
+            <div className='shadow rounded' style={{ height: '400px', backgroundColor:'lightgrey', overflow:'auto'}}>
 
               <ul className='mt-3 '>
-                {users.map((user) => (
+                {users.filter(user => user.user.toLowerCase().includes(search.toLowerCase())).map(user => (
                   <div className='rounded mb-2 d-flex justify-content-between  ' style={{ height: '35px', border: '1px solid' }}>
                    
                     <li className='ms-1 mt-1' key={user.id}>

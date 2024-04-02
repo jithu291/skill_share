@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Table from '@mui/joy/Table';
 import bid from '../assets/Images/bid3.jpg'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { MDBIcon, MDBTypography } from 'mdb-react-ui-kit';
 
 function Bid1() {
     const [bids, setBids] = useState([]);
@@ -59,8 +61,14 @@ function Bid1() {
   
   return (
   <>
+    <MDBTypography tag="h5" style={{marginLeft:'20px', marginTop:'20px'}}>
+                      <a href="/landing" className="text-body" style={{textDecoration:'none'}}>
+                        <MDBIcon fas icon="long-arrow-alt-left me-2" /> Back
+                      </a>
+                    </MDBTypography>  
+                    <hr />
    <div className='d-flex justify-content-center align-items-center '>
-    <img  style={{width:'50%', height:'255px'}} src={bid} alt="" />
+   <img className='' style={{width:'30%', height:'50%'}} src={bid} alt="" />
    </div>
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin:'200px', marginTop:'70px' }}>
     <div className=' justify-content-center align-items-center'>
@@ -84,7 +92,7 @@ function Bid1() {
                                     <td>{bid.status}</td>
                                   
                                     <td className=' text-center'>
-                                      <button onClick={()=>handleBidDelete(bid.id)}><i className="fa-solid fa-trash"></i></button>
+                                      <button className='btn ' onClick={()=>handleBidDelete(bid.id)}><i className="fa-solid fa-trash text-danger"></i></button>
                                     </td>
                                 </tr>
                                 ))}

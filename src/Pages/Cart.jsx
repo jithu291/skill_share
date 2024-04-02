@@ -168,7 +168,7 @@ export default function Cart() {
                 <MDBRow>
                   <MDBCol lg="7">
                     <MDBTypography tag="h5">
-                      <a href="/landing" className="text-body">
+                      <a href="/landing" className="text-body" style={{textDecoration:'none'}}>
                         <MDBIcon fas icon="long-arrow-alt-left me-2" /> Back
                       </a>
                     </MDBTypography>
