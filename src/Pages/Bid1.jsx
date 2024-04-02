@@ -70,7 +70,7 @@ function Bid1() {
                                 <tr style={{backgroundColor:'#0095a9'}} className='table-info fs-3'>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Bid price</th>
+                                    <th> price</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>

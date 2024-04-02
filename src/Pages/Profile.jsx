@@ -20,6 +20,7 @@ function Profile() {
     name: '',
     bio: '',
     skills: '',
+    user_skill:'',
     profile_pic: null,
     user: id
   });
@@ -125,6 +126,7 @@ function Profile() {
       formDataToSend.append('name', formData.name);
       formDataToSend.append('bio', formData.bio);
       formDataToSend.append('skills', formData.skills);
+      formDataToSend.append('user_skill', formData.user_skill);
       formDataToSend.append('user', id);
       if (formData.profile_pic) {
         formDataToSend.append('profile_pic', formData.profile_pic);
@@ -270,7 +272,15 @@ function Profile() {
               <option value="crafting">Crafting</option>
             </Form.Select>
           </FloatingLabel>
-
+          
+          <FloatingLabel controlId="user_skill" label="Other Skills" className='mt-2'>
+  <Form.Control
+    type="text"
+    name="user_skill"
+    value={formData.user_skill}
+    onChange={handleInputChange}
+  />
+</FloatingLabel>
 
           <label className='border rounded mt-2 d-flex' style={{ width: '465px' }}>
             <input type="file" style={{ display: 'none' }} onChange={handleFileChange} />
