@@ -36,5 +36,8 @@
 
 }
 .landing{
-    background:linear-gradient(to right , rgb(219, 219, 219) , rgba(236, 172, 127, 0.942))
+    background:linear-gradient(to right , rgb(219, 219, 219) , rgba(236, 172, 127, 0.942));
+    position: relative;
+    margin: 0px;
+    width: 100%;
 }
