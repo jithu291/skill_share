@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toast } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { MDBIcon, MDBTypography } from 'mdb-react-ui-kit';
 
 function Exam() {
 
@@ -152,7 +153,14 @@ console.log(data);
 
     return (
         <>
+         
         <div style={{height:'100vh',width:'100%'}} >
+
+        <MDBTypography tag="h5" style={{marginLeft:'20px', marginTop:'20px'}}>
+                      <a href="/landing" className="text-body" style={{textDecoration:'none' }}>
+                        <MDBIcon fas icon="long-arrow-alt-left me-2" /> Back
+                      </a>
+                    </MDBTypography>
             <div className='d-flex justify-content-center mt-3'>
                 <h1>Exam Questions Releted {currentUser.skills}</h1>
             </div>

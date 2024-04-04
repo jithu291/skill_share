@@ -178,7 +178,7 @@ const [search , setSearch] = useState('')
             <div style={{ marginTop: '6px', marginLeft: '20px' }} >
               <Link to={'/cart'} className='d-flex gap-1' style={{ textDecoration: 'none', color: 'grey' }}><i class="fa-solid fa-cart-shopping mt-1"></i><p>Cart</p></Link>
             </div>
-            <Button onClick={handleLogout} className='d-flex gap-1 ' style={{ marginTop: '5px', width:'90px' }} variant="danger"><i class="fa-solid fa-right-from-bracket mt-1"></i>Logout </Button>
+            <Button onClick={handleLogout} className='d-flex gap-1 shadow ' style={{ marginTop: '5px', width:'90px' }} variant="danger"><i class="fa-solid fa-right-from-bracket mt-1"></i>Logout </Button>
 
 
 
@@ -192,13 +192,13 @@ const [search , setSearch] = useState('')
             }
             <img src={data.profile_pic && data.profile_pic} alt="" style={{ width: '200px', height: '200px', borderRadius: '100px', marginTop: '-40px' }} />
 
-            <div className='border rounded border-dark  w-50 mt-4'>
+            <div className='shadow rounded border-dark  w-50 mt-4'>
               <p className='mt-1 text-center'>{data?.name}</p>
             </div>
-            <div className='border rounded border-dark  w-50 mt-4'>
+            <div className='shadow rounded border-dark  w-50 mt-4'>
               <p className='mt-1 text-center'>{data?.bio}</p>
             </div>
-            <div className='border rounded border-dark  w-50 mt-4'>
+            <div className='shadow rounded border-dark  w-50 mt-4'>
               <p className='mt-1 text-center'>{data?.skills}</p>
             </div>
             <div className='btn '>
@@ -262,6 +262,7 @@ const [search , setSearch] = useState('')
               name="name"
               value={formData.name}
               onChange={handleInputChange}
+              className='shadow'
             />
           </FloatingLabel>
 
@@ -271,6 +272,7 @@ const [search , setSearch] = useState('')
               name="bio"
               value={formData.bio}
               onChange={handleInputChange}
+              className='shadow'
             />
           </FloatingLabel>
           <FloatingLabel controlId="skills" label="Skills" className='mt-2'>
@@ -278,6 +280,7 @@ const [search , setSearch] = useState('')
               name="skills"
               value={formData.skills}
               onChange={handleInputChange}
+              className='shadow'
             >
               <option value="">Select a skill...</option>
               <option value="coding">Coding</option>
@@ -293,10 +296,11 @@ const [search , setSearch] = useState('')
     name="user_skill"
     value={formData.user_skill}
     onChange={handleInputChange}
+    className='shadow'
   />
 </FloatingLabel>
 
-          <label className='border rounded mt-2 d-flex' style={{ width: '465px' }}>
+          <label className='border rounded mt-2 d-flex shadow' style={{ width: '465px' }} >
             <input type="file" style={{ display: 'none' }} onChange={handleFileChange} />
             {!formData.profile_pic && (<div className='d-flex ms-3 gap-1 mt-3  '>
               <p>Add Profile Picture</p>

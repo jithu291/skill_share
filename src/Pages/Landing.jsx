@@ -8,6 +8,7 @@ import { MDBIcon } from 'mdb-react-ui-kit';
 import Exam from './Exam';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import Comments from '../components/Comments';
 
 
 function Landing() {
@@ -208,8 +209,10 @@ const handleCategoryChange = (category) => {
             <Modal.Body>
 
               <Row>
-                <Col>
+                <Col className='d-flex flex-column'>
                   <img className='img-fluid' style={{ height: '250px', width: '300px' }} src={selectedItem ? selectedItem.media : ""} alt="" />
+           
+                  
                 </Col>
                 <Col>
                   <h2>{selectedItem ? selectedItem.title : ""}
@@ -218,13 +221,17 @@ const handleCategoryChange = (category) => {
                   <p className='fw-bolder mt-4'>Description: <span style={{ fontWeight: 'lighter' }}  >{selectedItem ? selectedItem.description : ""}</span></p>
                   <p className='fw-bolder'>Price: <span style={{ fontWeight: 'lighter' }}>{selectedItem ? selectedItem.price : ""}</span></p>
                   <p className='fw-bolder'>Category: <span style={{ fontWeight: 'lighter' }}>{selectedItem ? selectedItem.category : ""}</span></p>
-                  <a href>{selectedItem ? selectedItem.link : ""}</a>
+                  <a href={selectedItem ? selectedItem.link : "#"}>{selectedItem ? selectedItem.link : "No link available"}</a>
+
 
                   <div style={{ marginLeft: '280px', marginTop: '-30px' }} className='d-flex justify-content-evenly gap-4 mt-5'>
                     <Button style={{height:'35px'}} onClick={() => { addToCart(selectedItem.id); handleClose(); }} ><i class="fa-solid fa-cart-plus"></i></Button>
                  
                     <Button  style={{height:'35px', width:''}} onClick={() => { placeBid(selectedItem.id); handleClose(); }} className='btn btn-primary'><i class="fa-solid fa-coins ms-"></i></Button>
+
+                   
                   </div>
+                  <Comments/>
                 </Col>
               </Row>
 
