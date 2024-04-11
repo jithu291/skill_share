@@ -70,6 +70,10 @@ const [search , setSearch] = useState('')
       });
      
   toast.success('message send')
+      setNewMessage({
+newMessage:"",
+image:''
+  });
   setsendImagepreview("")
     } catch (error) {
       toast.error('Error sending message. Please try again later.');
