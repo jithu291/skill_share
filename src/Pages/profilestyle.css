@@ -19,6 +19,8 @@
     padding: 10px;
     border-radius: 5px;
     overflow: scroll;
+    display: flex;
+    flex-direction: row;
   }
   .incoming p{
     color: white;

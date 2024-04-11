@@ -421,15 +421,18 @@ console.log(messages);
    
    
    {/* chat modal */}
-   <Modal show={showchat} onHide={handleClosechat} backdrop="static" keyboard={false}>
+   <Modal show={showchat} onHide={handleClosechat} backdrop="static" keyboard={false} size='lg'>
         <Modal.Header closeButton>
           <Modal.Title style={{ marginLeft: '180px', fontSize: '30px', fontFamily: 'Cormorant,seriff ' }}>
             Chat
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Display user information in the chat modal */}
-          {selectedUser && (
+         <div style={{width:'100%'}}>
+
+
+ {/* Display user information in the chat modal */}
+ {selectedUser && (
            <div className='d-flex'>
            <img className='m-1' src={selectedUser.profile_pic} alt="no image" style={{height:'50px',width:"50px",borderRadius:'50%'}}/>
            <h5 className='ms-2 mt-3'>{selectedUser.name}</h5>
@@ -445,23 +448,29 @@ console.log(messages);
        {message.receiver_user === receiverid?
 
        <>
-       <p>me</p>
-       <p className="text-light fs-5">{message.message}</p>
-       {message.image && <img src={message.image} alt="no image" style={{ height: '300px', width: '400px', border: '1px solid black',borderRadius:'10px' }} />}
+             <div className='d-flex flex-column'>
+        <div>
+            <p>{selectedUser.user}</p>
+            <p className="text-light fs-5 ">{message.message}</p>
+        </div>
+         {message.image && <img src={message.image} alt="no image" style={{ height: '300px', width: '400px', border: '1px solid black',borderRadius:'10px' }} />}
+  </div>
        </>
       
       :
-    <>
-        <p>{selectedUser.name}</p>
-        <p className="text-light fs-5">{message.message}</p>
+      <div className='d-flex flex-column'>
+      <div>
+          <p>me</p>
+          <p className="text-light fs-5 ">{message.message}</p>
+      </div>
        {message.image && <img src={message.image} alt="no image" style={{ height: '300px', width: '400px', border: '1px solid black',borderRadius:'10px' }} />}
-    </>
+</div>
       }
       </div>
     ))}
      
       </div>
-      <div className="chat-footer">
+      <div className="chat-footer" style={{width:'96%',borderRadius:'10px'}}>
         <input 
         onChange={(e)=>setNewMessage({...takeinput,newMessage:e.target.value})}
         placeholder="Type your message" type="text" />
@@ -469,6 +478,9 @@ console.log(messages);
         <button onClick={sendMessage}>Send</button>
       </div>
     </div>
+
+
+         </div>
         </Modal.Body>
         <Modal.Footer>
           {/* Add any additional buttons or controls here */}
@@ -476,7 +488,7 @@ console.log(messages);
       </Modal>
 
 
-      <Modal show={showimage} onHide={handleCloseimage} backdrop="static" keyboard={false}>
+      <Modal className='bg-light' show={showimage} onHide={handleCloseimage} backdrop="static" keyboard={false}>
       <Modal.Header closeButton>
           <Modal.Title style={{ marginLeft: '180px', fontSize: '30px', fontFamily: 'Cormorant,seriff ' }}>
             Send Image
