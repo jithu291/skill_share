@@ -46,11 +46,10 @@ function ChatPage() {
           Authorization: `Bearer ${token}`,
         },
       });
-      setNewMessage('');
-      // After sending the message, refetch messages to update the chat
-      fetchMessages();
+     
+  
     } catch (error) {
-      setError('Error sending message. Please try again later.');
+      toast.error('Error sending message. Please try again later.');
       console.error('Error sending message:', error);
     }
   };

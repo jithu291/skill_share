@@ -7,15 +7,39 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaCloudUploadAlt, FaUserEdit } from "react-icons/fa";
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import './profilestyle.css'
+
 
 function Profile() {
   const [data, setData] = useState(null)
   const [users, setUsers] = useState([]);
   const [uid, setUid] = useState('')
+  const [receiverid,setreceiverid] = useState('')
   const id = sessionStorage.getItem("id")
   const [accessToken, setAccessToken] = useState('');
+  const [showchat, setShowchat] = useState(false);
+  const [sendimagepreview,setsendImagepreview] = useState('')
+  const [takeinput, setNewMessage] = useState({
+newMessage:"",
+image:''
+  });
+  const [messages, setMessages] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null); // State to hold the selected user for chat
+
+useEffect(()=>{
+  if(takeinput.image){
+    setsendImagepreview(URL.createObjectURL(takeinput.image))
+  }
+},[takeinput.image])
+// console.log(takeinput);
+  const handleClosechat = () => setShowchat(false);
+  const handleShowchat = (user) => {
+    setSelectedUser(user); 
+    setShowchat(true)
+  setreceiverid(user.id)
+  };
   const [formData, setFormData] = useState({
     name: '',
     bio: '',
@@ -27,13 +51,52 @@ function Profile() {
 const [search , setSearch] = useState('')
 
   const navigate = useNavigate();
-  const handleUserClick = (userId , userName) => {
-    setSelectedUserId(userId);
-    setSelectedUserName(userName);
-    console.log(`clicked on ${userId}`);
-    navigate(`/chatpage/${userId}`);
+
+
+  // send message
+  const sendMessage = async (e) => {
+    const {newMessage,image} = takeinput
+    // console.log(image);
+    e.preventDefault();
+    try {
+      const reqBody = new FormData()
+      reqBody.append("message",newMessage)
+      reqBody.append("image",image)
+      const token = sessionStorage.getItem('token');
+      await axios.post(`http://127.0.0.1:8000/api/send-message/${receiverid}/`,reqBody, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+     
+  toast.success('message send')
+  setsendImagepreview("")
+    } catch (error) {
+      toast.error('Error sending message. Please try again later.');
+      console.error('Error sending message:', error);
+    }
   };
 
+
+  // console.log(receiverid);
+  // list chat
+const fetchMessages = async () => {
+  try {
+    const token = sessionStorage.getItem('token');
+    const response = await axios.get(`http://localhost:8000/api/user-chat-messages/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
+    setMessages(response.data);
+  } catch (error) {
+console.log(error);
+  }
+};
+useEffect(()=>{
+  fetchMessages()
+})
+// console.log(messages);
   const handleLogout = () => {
     // Clear data stored in sessionStorage
     sessionStorage.clear();
@@ -83,13 +146,13 @@ const [search , setSearch] = useState('')
         }
       });
       setUsers(response.data);
-      console.log('all users', users);
-        console.log(response.data);
+    //  console.log('all users', users);
+      //  console.log(response);
     } catch (err) {
       console.error('Error fetching all users:', err);
     }
   };
-
+//console.log(users);
   //
   const [show, setShow] = useState(false);
 
@@ -97,6 +160,13 @@ const [search , setSearch] = useState('')
   const handleShow = () => {
 
     setShow(true)
+  };
+  const [showimage, setShowimage] = useState(false);
+
+  const handleCloseimage = () => setShowimage(false);
+  const handleShowimage = () => {
+
+    setShowimage(true)
   };
 
   const handleInputChange = (e) => {
@@ -159,7 +229,7 @@ const [search , setSearch] = useState('')
   if (data == null) return (<></>)
 
 
-
+console.log(messages);
 
   return (
     <>
@@ -226,7 +296,7 @@ const [search , setSearch] = useState('')
             </div>
             <div className='shadow rounded' style={{ height: '400px', backgroundColor:'lightgrey', overflow:'auto'}}>
 
-              <ul className='mt-3 '>
+              {/* <ul className='mt-3 '>
                 {users.filter(user => user.user.toLowerCase().includes(search.toLowerCase())).map(user => (
                   <div className='rounded mb-2 d-flex justify-content-between  ' style={{ height: '35px', border: '1px solid' }}>
                    
@@ -236,7 +306,26 @@ const [search , setSearch] = useState('')
                     <Link  to={`/chatpage/${user.id}`}><i style={{marginRight:'20px', fontSize:'25px', color:'green'}} class="fa-brands fa-rocketchat mt-1"></i></Link>
                   </div>
                 ))}
-              </ul>
+              </ul> */}
+<ul className='mt-3 '>
+  {users.map(user => (
+    <li key={user.id} className='rounded mb-2 d-flex justify-content-between' style={{ height: '60px', border: '1px solid' }}>
+
+<div className='d-flex'>
+  <img className='m-1' src={user.profile_pic} alt="no image" style={{height:'50px',width:"50px",borderRadius:'50%'}}/>
+  <h5 className='ms-2 mt-3'>{user.name}</h5>
+</div>
+
+      <button onClick={(e) => handleShowchat(user)} style={{ textDecoration: 'none',display:'flex',alignItems:'center',justifyContent:'center',width:'80px',background:'none',border:'none'}}> 
+      <i style={{ fontSize: '25px', color: 'green' }} className="fa-brands fa-rocketchat mt-1"></i>       
+        </button>
+
+      {/* <Link to={`/chatpage/${user.id}`}><i style={{ marginRight: '20px', fontSize: '25px', color: 'green' }} className="fa-brands fa-rocketchat mt-1"></i></Link> */}
+    </li>
+  ))}
+</ul>
+
+
             </div>
           </div>
 
@@ -321,6 +410,105 @@ const [search , setSearch] = useState('')
         </Modal.Footer>
       </Modal>
       <ToastContainer theme='colored' autoClose='2000' />
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   {/* chat modal */}
+   <Modal show={showchat} onHide={handleClosechat} backdrop="static" keyboard={false}>
+        <Modal.Header closeButton>
+          <Modal.Title style={{ marginLeft: '180px', fontSize: '30px', fontFamily: 'Cormorant,seriff ' }}>
+            Chat
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* Display user information in the chat modal */}
+          {selectedUser && (
+           <div className='d-flex'>
+           <img className='m-1' src={selectedUser.profile_pic} alt="no image" style={{height:'50px',width:"50px",borderRadius:'50%'}}/>
+           <h5 className='ms-2 mt-3'>{selectedUser.name}</h5>
+         </div>
+          )}
+
+<div className="chat-card">
+      <div className="chat-body">
+      {messages
+    .filter(message => message.receiver_user === receiverid || message.send_user === receiverid)
+    .map((message, index) => (
+      <div className="message incoming" key={index}>
+       {message.receiver_user === receiverid?
+
+       <>
+       <p>me</p>
+       <p className="text-light fs-5">{message.message}</p>
+       {message.image && <img src={message.image} alt="no image" style={{ height: '300px', width: '400px', border: '1px solid black',borderRadius:'10px' }} />}
+       </>
+      
+      :
+    <>
+        <p>{selectedUser.name}</p>
+        <p className="text-light fs-5">{message.message}</p>
+       {message.image && <img src={message.image} alt="no image" style={{ height: '300px', width: '400px', border: '1px solid black',borderRadius:'10px' }} />}
+    </>
+      }
+      </div>
+    ))}
+     
+      </div>
+      <div className="chat-footer">
+        <input 
+        onChange={(e)=>setNewMessage({...takeinput,newMessage:e.target.value})}
+        placeholder="Type your message" type="text" />
+      <button onClick={handleShowimage} className='bg-dark'><i class="fa-solid fa-square-plus text-light"></i></button>
+        <button onClick={sendMessage}>Send</button>
+      </div>
+    </div>
+        </Modal.Body>
+        <Modal.Footer>
+          {/* Add any additional buttons or controls here */}
+        </Modal.Footer>
+      </Modal>
+
+
+      <Modal show={showimage} onHide={handleCloseimage} backdrop="static" keyboard={false}>
+      <Modal.Header closeButton>
+          <Modal.Title style={{ marginLeft: '180px', fontSize: '30px', fontFamily: 'Cormorant,seriff ' }}>
+            Send Image
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+      <div style={{height:'480px',width:'100%'}}>
+          <div className='ms-3'>
+                <label for="file" class="custum-file-upload">
+  
+                  <div class="addimage" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+  
+                    <img src={sendimagepreview?sendimagepreview:'https://cdn.pixabay.com/photo/2017/11/10/05/24/add-2935429_960_720.png'} alt="no image" style={{ height: '400px', width: '420px', border: '1px solid black',borderRadius:'10px' }} />
+                  </div>
+                  <input id="file" type="file"
+                   onChange={(e) => setNewMessage({ ...takeinput, image: e.target.files[0] })}
+                  style={{ display: 'none' }} />
+  
+                </label>
+               
+              </div>
+              <div className="chat-footer">
+        <input 
+        onChange={(e)=>setNewMessage({...takeinput,newMessage:e.target.value})}
+        placeholder="Type your message" type="text" />
+    
+        <button onClick={sendMessage}>Send</button>
+      </div>
+      </div>
+        </Modal.Body>
+      
+      </Modal>  
     </>
   )
 }
