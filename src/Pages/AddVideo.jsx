@@ -69,7 +69,7 @@ const navigate = useNavigate()
   return (
     <div>
       <Button onClick={handleShow} variant="success">
-        <i className="add fa-solid fa-plus"> Add Videos</i>
+        <i className="add fa-solid fa-plus"> Add Product</i>
       </Button>{' '}
       <Modal size="lg" show={show} onHide={handleClose} className='shadow '>
         <Modal.Header closeButton>

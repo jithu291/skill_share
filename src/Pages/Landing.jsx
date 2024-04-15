@@ -231,7 +231,7 @@ function Landing() {
 
 
                   </div>
-                  <Comments />
+                  <Comments  Id={selectedItem ? selectedItem.id : null}/>
                 </Col>
               </Row>
 
