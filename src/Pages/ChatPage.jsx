@@ -15,7 +15,7 @@ function ChatPage() {
     fetchMessages();
   }, [userId]);
 
-  const fetchMessages = async () => {
+  const fetchMessages = async () => { 
     try {
       const token = sessionStorage.getItem('token');
       const response = await axios.post(`http://localhost:8000/api/send-message/${userId}/`, {
