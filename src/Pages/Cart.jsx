@@ -16,6 +16,7 @@ import { Button, Modal } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import payment1 from '../assets/Video/payment1.mp4'
 import { useNavigate } from "react-router-dom";
+import UPI from "../components/UPI";
 
 
 export default function Cart() {
@@ -25,10 +26,12 @@ export default function Cart() {
     cardholderName: "",
     cardNumber: "",
     expiration: "",
-    cvv: ""
+    cvv: "",
+    upi:""
   });
   const [showModal, setShowModal] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
+  const [paymentOption, setpaymentOption] = useState('card')
   const navigate = useNavigate();
 
   const handleVideoEnd = () => {
@@ -140,23 +143,32 @@ export default function Cart() {
   };
 
   const handleCheckout = () => {
-
-    if (
-      !cardDetails.cardholderName ||
-      !cardDetails.cardNumber ||
-      !cardDetails.expiration ||
-      !cardDetails.cvv
-    ) {
-      toast.error("Please fill in all payment details");
-      return;
-    }
+if(paymentOption==='card'){
+  if (
+    !cardDetails.cardholderName ||
+    !cardDetails.cardNumber ||
+    !cardDetails.expiration ||
+    !cardDetails.cvv
+  ) {
+    toast.error("Please fill in all payment details");
+    return;
+  }
+}else if(paymentOption==='upi'){
+  const upiIdInput = document.getElementById('upiIdInput');
+  if (!upiIdInput || !upiIdInput.value.trim()) {
+    toast.error("Please enter your UPI ID");
+    return;
+  }}
+ 
     setShowModal(true);
   };
   const handlePaymentConfirmation = () => {
     setShowModal(true);
-
-
   };
+
+  const handlePaymentOptionChange = (option) => {
+    setpaymentOption(option)
+  }
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }} >
 
@@ -168,7 +180,7 @@ export default function Cart() {
                 <MDBRow>
                   <MDBCol lg="7">
                     <MDBTypography tag="h5">
-                      <a href="/landing" className="text-body" style={{textDecoration:'none'}}>
+                      <a href="/landing" className="text-body" style={{ textDecoration: 'none' }}>
                         <MDBIcon fas icon="long-arrow-alt-left me-2" /> Back
                       </a>
                     </MDBTypography>
@@ -239,49 +251,64 @@ export default function Cart() {
                   <MDBCol lg="5">
                     <MDBCard className="bg-primary text-white rounded-3">
                       <MDBCardBody>
-                        <div className="d-flex justify-content-between align-items-center mb-4">
-                          <MDBTypography tag="h5" className="mb-0">
-                            Card details
+                        <MDBTypography tag="h5" className=" text-center">
+                          Payment Option  </MDBTypography>
+                        <hr />
+                        <div className="d-flex justify-content-between align-items-center mb-2">
+
+                          <MDBTypography tag="h5" className="mb-0  mt-0 align-items-center">
+                            <button className="paymentbtn btn text-white " onClick={() => handlePaymentOptionChange('card')}>Credit/Debit Card</button>
+                            <button className="paymentbtn btn text-white  " onClick={() => handlePaymentOptionChange('upi')}> UPI Payment</button>
                           </MDBTypography>
 
                         </div>
+                        {paymentOption === 'card' && (
+                          <>
+                            <p className="small">Card type</p>
+                            <a href="#!" type="submit" className="text-white">
+                              <MDBIcon fab icon="cc-mastercard fa-2x me-2" />
+                            </a>
+                            <a href="#!" type="submit" className="text-white">
+                              <MDBIcon fab icon="cc-visa fa-2x me-2" />
+                            </a>
+                            <a href="#!" type="submit" className="text-white">
+                              <MDBIcon fab icon="cc-amex fa-2x me-2" />
+                            </a>
+                            <a href="#!" type="submit" className="text-white">
+                              <MDBIcon fab icon="cc-paypal fa-2x me-2" />
+                            </a>
 
-                        <p className="small">Card type</p>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-mastercard fa-2x me-2" />
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-visa fa-2x me-2" />
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-amex fa-2x me-2" />
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-paypal fa-2x me-2" />
-                        </a>
+                            <form className="mt-4">
+                              <MDBInput className="mb-4" label="Cardholder's Name" placeholder="Cardholder's Name" type="text" size="lg"
+                                contrast value={cardDetails.cardholderName}
+                                onChange={(e) => setCardDetails({ ...cardDetails, cardholderName: e.target.value })} />
 
-                        <form className="mt-4">
-                          <MDBInput className="mb-4" label="Cardholder's Name" placeholder="Cardholder's Name" type="text" size="lg"
-                            contrast value={cardDetails.cardholderName}
-                            onChange={(e) => setCardDetails({ ...cardDetails, cardholderName: e.target.value })} />
+                              <MDBInput className="mb-4" label="Card Number" type="text" size="lg"
+                                minLength="19" maxLength="19" placeholder="1234 5678 9012 3457" contrast value={cardDetails.cardNumber}
+                                onChange={(e) => setCardDetails({ ...cardDetails, cardNumber: e.target.value })} />
 
-                          <MDBInput className="mb-4" label="Card Number" type="text" size="lg"
-                            minLength="19" maxLength="19" placeholder="1234 5678 9012 3457" contrast value={cardDetails.cardNumber}
-                            onChange={(e) => setCardDetails({ ...cardDetails, cardNumber: e.target.value })} />
+                              <MDBRow className="mb-4">
+                                <MDBCol md="6">
+                                  <MDBInput className="mb-4" label="Expiration" type="text" size="lg"
+                                    minLength="6" maxLength="6" placeholder="MM/YY" contrast value={cardDetails.expiration}
+                                    onChange={(e) => setCardDetails({ ...cardDetails, expiration: e.target.value })} />
+                                </MDBCol>
+                                <MDBCol md="6">
+                                  <MDBInput className="mb-4" label="Cvv" type="text" size="lg" minLength="3"
+                                    maxLength="3" placeholder="&#9679;&#9679;&#9679;" contrast value={cardDetails.cvv}
+                                    onChange={(e) => setCardDetails({ ...cardDetails, cvv: e.target.value })} />
+                                </MDBCol>
+                              </MDBRow>
+                            </form>
+                          </>
+                        )}
 
-                          <MDBRow className="mb-4">
-                            <MDBCol md="6">
-                              <MDBInput className="mb-4" label="Expiration" type="text" size="lg"
-                                minLength="6" maxLength="6" placeholder="MM/YY" contrast value={cardDetails.expiration}
-                                onChange={(e) => setCardDetails({ ...cardDetails, expiration: e.target.value })} />
-                            </MDBCol>
-                            <MDBCol md="6">
-                              <MDBInput className="mb-4" label="Cvv" type="text" size="lg" minLength="3"
-                                maxLength="3" placeholder="&#9679;&#9679;&#9679;" contrast value={cardDetails.cvv}
-                                onChange={(e) => setCardDetails({ ...cardDetails, cvv: e.target.value })} />
-                            </MDBCol>
-                          </MDBRow>
-                        </form>
+                        {paymentOption==='upi'&&(
+                          <>
+                          <UPI/>
+                          </>
+                        )}
+
 
                         <hr />
                         <div className="d-flex justify-content-between">

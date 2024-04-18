@@ -21,7 +21,6 @@
 }
 
 .navname {
-  
   font-family: "Rampart One", sans-serif;
   font-size: xx-large;
   color: rgb(0, 0, 0);
@@ -113,4 +112,29 @@
 
 .commentBox{
 overflow: auto;
+}
+.paymentbtn:hover{
+background-color: rgb(15, 80, 170);
+color: black;
+border-radius: 30px;
+}
+.paymentbtn2:hover{
+  background-color: rgb(15, 80, 170);
+  color: black;
+  border-radius: 30px;
+  }
+.paymentbtn2{
+  margin-left: 40px;
+  border-bottom: 1px solid white;
+  border-radius: 3px;
+}
+.paymentbtn{
+  margin-left: 40px;
+  border-bottom: 1px solid white;
+  border-radius: 3px;
+}
+.upiimage{
+  height: 20px;
+  width: 30px;
+  background-color: white;
 }
