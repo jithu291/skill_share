@@ -44,6 +44,9 @@ function Landing() {
       console.log('error in fetching', error);
     }
   }
+  useEffect(()=>{
+fetchDetail()
+  },[])
 
   const handleClose = () => setSelectedItem(null); // Close modal by resetting selectedItem to null
 
@@ -150,7 +153,7 @@ function Landing() {
 
   return (
     <>
-      <div className='landing ' style={{ height: '60rem' }}>
+      <div className='landing ' style={{ height: 'auto' }}>
         <div>
           <Header showUserButton={true} />
         </div>
@@ -164,8 +167,10 @@ function Landing() {
               <Dropdown.Item href="#/action-1" onClick={() => handleCategoryChange('All')}>All</Dropdown.Item>
               <Dropdown.Item href="#/action-2" onClick={() => handleCategoryChange('coding')}>Coding </Dropdown.Item>
               <Dropdown.Item href="#/action-3" onClick={() => handleCategoryChange('drawing')}>Drawing</Dropdown.Item>
-              <Dropdown.Item href="#/action-3" onClick={() => handleCategoryChange('crafting')}> Crafting</Dropdown.Item>
-              <Dropdown.Item href="#/action-3" onClick={() => handleCategoryChange('communication')}> Communication</Dropdown.Item>
+              <Dropdown.Item href="#/action-4" onClick={() => handleCategoryChange('crafting')}> Crafting</Dropdown.Item>
+              <Dropdown.Item href="#/action-5" onClick={() => handleCategoryChange('communication')}> Communication</Dropdown.Item>
+              <Dropdown.Item href="#/action-6" onClick={() => handleCategoryChange('others')}> Skill Hub</Dropdown.Item>
+
             </Dropdown.Menu>
           </Dropdown>
           <div className='d-flex align-items-center text-center justify-content-center'>
@@ -182,7 +187,7 @@ function Landing() {
           <Link to="/exam" className='exam btn btn-success'>
             <i class="fa-solid fa-circle-info mt-1 me-1" style={{ fontSize: '15px' }}></i>Exam
           </Link>
-          <AddVideo />
+          <AddVideo AddVideo={fetchDetail()}/>
         </div>
         <div className='container mt-5 mb-5'  >
           <div className="row row-cols-1 row-cols-md-4 g-4  d-flex justify-content-between ">

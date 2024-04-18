@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // Added curly braces around useState
+import React, { useEffect, useState } from 'react'; // Added curly braces around useState
 import { Button, Modal, Form, FloatingLabel } from 'react-bootstrap';
 import add from '../assets/Images/add.png';
 import axios from 'axios';
@@ -66,6 +66,7 @@ const navigate = useNavigate()
 
 
 
+
   return (
     <div>
       <Button onClick={handleShow} variant="success">
@@ -123,6 +124,7 @@ const navigate = useNavigate()
               <option value="drawing">Drawing</option>
               <option value="communication">Communication</option>
               <option value="crafting">Crafting</option>
+              <option value="others">Other Skills</option>
             </Form.Select>
           </FloatingLabel>
 
