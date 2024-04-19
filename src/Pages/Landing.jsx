@@ -44,9 +44,9 @@ function Landing() {
       console.log('error in fetching', error);
     }
   }
-  useEffect(()=>{
-fetchDetail()
-  },[])
+  useEffect(() => {
+    fetchDetail()
+  }, [])
 
   const handleClose = () => setSelectedItem(null); // Close modal by resetting selectedItem to null
 
@@ -151,6 +151,15 @@ fetchDetail()
     setSelectedCategory(category);
   };
 
+  const getFileType = (url) => {
+    const extension = url.split('.').pop().toLowerCase();
+    if (extension === 'mp4') {
+      return 'video';
+    } else {
+      return 'image';
+    }
+  };
+
   return (
     <>
       <div className='landing ' style={{ height: 'auto' }}>
@@ -187,14 +196,21 @@ fetchDetail()
           <Link to="/exam" className='exam btn btn-success'>
             <i class="fa-solid fa-circle-info mt-1 me-1" style={{ fontSize: '15px' }}></i>Exam
           </Link>
-          <AddVideo AddVideo={fetchDetail()}/>
+          <AddVideo AddVideo={fetchDetail()} />
         </div>
         <div className='container mt-5 mb-5'  >
           <div className="row row-cols-1 row-cols-md-4 g-4  d-flex justify-content-between ">
             {filteredProducts.filter(item => selectedCategory === 'All' || item.category === selectedCategory).map((item, index) => (
               <Card style={{ width: '15rem' }} key={index} className='shadow' >
-                <Card.Img className='mt-2' variant="top" style={{ height: '200px' }} src={item.media} onClick={() => handleCardClick(item)} />
-                <Card.Body>
+               {getFileType(item.media) === 'image' && (
+            <img className='mt-2' variant="top" style={{ height: '200px' }} src={item.media} onClick={() => handleCardClick(item)} alt="Product" />
+          )}
+          {getFileType(item.media) === 'video' && (
+            <video controls className="mt-2" style={{ height: '200px', width: '100%' }} onClick={() => handleCardClick(item)}>
+              <source src={item.media} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}           <Card.Body>
                   <Card.Title className='d-flex justify-content-center' >{item.title}</Card.Title>
                   <Card.Text className='d-flex justify-content-center' >
                     {item.description}            </Card.Text>
@@ -236,7 +252,7 @@ fetchDetail()
 
 
                   </div>
-                  <Comments  Id={selectedItem ? selectedItem.id : null}/>
+                  <Comments Id={selectedItem ? selectedItem.id : null} />
                 </Col>
               </Row>
 
