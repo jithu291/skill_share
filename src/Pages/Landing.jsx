@@ -51,7 +51,7 @@ function Landing() {
   const handleClose = () => setSelectedItem(null); // Close modal by resetting selectedItem to null
 
   const handleCardClick = (item) => {
-    setSelectedItem(item, { id: item.id }); // Set the clicked item as selectedItem
+    setSelectedItem(item); // Set the clicked item as selectedItem
   };
 
 
@@ -193,9 +193,7 @@ function Landing() {
             />
 
           </div>
-          <Link to="/exam" className='exam btn btn-success'>
-            <i class="fa-solid fa-circle-info mt-1 me-1" style={{ fontSize: '15px' }}></i>Exam
-          </Link>
+        
           <AddVideo AddVideo={fetchDetail()} />
         </div>
         <div className='container mt-5 mb-5'  >

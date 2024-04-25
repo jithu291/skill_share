@@ -3,12 +3,12 @@ import { Button, Collapse, Form } from 'react-bootstrap';
 
 function UPI() {
     const [open, setOpen] = useState(false);
-  return (
-    <>
- 
-       
-       
- <Button
+    return (
+        <>
+
+
+
+            <Button
                 onClick={() => setOpen(!open)}
                 aria-controls="example-collapse-text"
                 aria-expanded={open}
@@ -31,8 +31,8 @@ function UPI() {
                     </Form.Group>
                 </div>
             </Collapse>
-               </>
-  )
+        </>
+    )
 }
 
 export default UPI

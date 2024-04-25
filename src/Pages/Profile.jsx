@@ -250,6 +250,9 @@ function Profile() {
             <div style={{ marginTop: '6px', marginLeft: '20px' }} >
               <Link to={'/cart'} className='d-flex gap-1' style={{ textDecoration: 'none', color: 'grey' }}><i class="fa-solid fa-cart-shopping mt-1"></i><p>Cart</p></Link>
             </div>
+            <Link to="/exam" className='exam btn ' style={{color:'grey', marginLeft:'5px'}}>
+            <i class="fa-solid fa-circle-info mt-1 me-1" style={{ fontSize: '15px' , color: 'grey'}}></i>Exam
+          </Link>
             <Button onClick={handleLogout} className='d-flex gap-1 shadow ' style={{ marginTop: '5px', width: '90px' }} variant="danger"><i class="fa-solid fa-right-from-bracket mt-1"></i>Logout </Button>
 
 

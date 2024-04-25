@@ -12,7 +12,7 @@ import {
   MDBTypography,
 } from "mdb-react-ui-kit";
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Collapse, Form, Modal } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import payment1 from '../assets/Video/payment1.mp4'
 import { useNavigate } from "react-router-dom";
@@ -27,11 +27,12 @@ export default function Cart() {
     cardNumber: "",
     expiration: "",
     cvv: "",
-    upi:""
+    upi: ""
   });
   const [showModal, setShowModal] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
   const [paymentOption, setpaymentOption] = useState('card')
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleVideoEnd = () => {
@@ -143,23 +144,24 @@ export default function Cart() {
   };
 
   const handleCheckout = () => {
-if(paymentOption==='card'){
-  if (
-    !cardDetails.cardholderName ||
-    !cardDetails.cardNumber ||
-    !cardDetails.expiration ||
-    !cardDetails.cvv
-  ) {
-    toast.error("Please fill in all payment details");
-    return;
-  }
-}else if(paymentOption==='upi'){
-  const upiIdInput = document.getElementById('upiIdInput');
-  if (!upiIdInput || !upiIdInput.value.trim()) {
-    toast.error("Please enter your UPI ID");
-    return;
-  }}
- 
+    if (paymentOption === 'card') {
+      if (
+        !cardDetails.cardholderName ||
+        !cardDetails.cardNumber ||
+        !cardDetails.expiration ||
+        !cardDetails.cvv
+      ) {
+        toast.error("Please fill in all payment details");
+        return;
+      }
+    } else if (paymentOption === 'upi') {
+      const upiIdInput = document.getElementById('upiIdInput');
+      if (!upiIdInput || !upiIdInput.value.trim()) {
+        toast.error("Please enter your UPI ID");
+        return;
+      }
+    }
+
     setShowModal(true);
   };
   const handlePaymentConfirmation = () => {
@@ -300,12 +302,44 @@ if(paymentOption==='card'){
                                 </MDBCol>
                               </MDBRow>
                             </form>
+                            <Button
+                              onClick={() => setOpen(!open)}
+                              aria-controls="example-collapse-text"
+                              aria-expanded={open}
+                            >
+                              <Form.Check
+                                type="checkbox"
+                                label="User Details"
+                                style={{ color: 'white' }}
+                              />
+                            </Button>
+                            <Collapse in={open}>
+                              <div id="example-collapse-text">
+                                <Form.Group className="d-flex">
+                                  <Form.Control
+                                    id="upiIdInput"
+                                    type="text"
+                                    placeholder="Full Name"
+                                    className="shadow"
+                                  />
+                                </Form.Group>
+                                <Form.Group className="d-flex">
+                                  <Form.Control
+                                    id="UserInput"
+                                    type="text"
+                                    placeholder="Address"
+                                    className="shadow mt-2"
+                                  style={{height:'80px'}}
+                                  />
+                                </Form.Group>
+                              </div>
+                            </Collapse>
                           </>
                         )}
 
-                        {paymentOption==='upi'&&(
+                        {paymentOption === 'upi' && (
                           <>
-                          <UPI/>
+                            <UPI />
                           </>
                         )}
 
